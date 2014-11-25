@@ -1,0 +1,103 @@
+#main {
+margin: 0 auto;
+min-width: 800px;
+width: 800px;
+background-color: #ccc;
+padding: 10px;
+min-height: 500px;
+}
+
+.product {
+border-bottom: 1px solid black;
+width: 100%;
+overflow: hidden;
+margin-top: 10px;
+}
+
+.product .quantity_text { 
+float: left;
+width: 45px;
+margin-right: 5px;
+}
+.product .add_product { 
+float: left;
+width: 150px;
+}
+.product .product_name {
+width: 300px;
+float: left;
+}
+
+.product .product_price {
+float: left;
+width: 100px;
+}
+
+.product .product_quantity {
+float: left;
+width: 100px;
+}
+
+.register {
+min-width: 700px;
+width: 700px;
+}
+
+.login {
+min-width: 500px;
+width: 500px;
+}
+
+.register label, .login label {
+float: left;
+text-align: right;
+margin-right: 15px;
+width: 100px;
+}
+
+.login .buttons {
+margin-top: 5px;
+margin-right: 85px;
+}
+
+.buttons {
+margin-top: 5px;
+margin-right: 285px;
+}
+.buttons input {
+float: right;
+margin-left: 10px;
+}
+
+.register form input[type="text"],
+.register form input[type="password"],
+.login form input[type="email"],
+.login form input[type="password"] {
+width: 300px;
+}
+
+input:focus {
+border: 1px solid #33CCFF;
+}
+
+form input[type="text"] {
+width: 500px;
+}
+
+#header {
+text-align: center;
+}
+
+#links a,
+#links p{
+margin: 0px 10px;
+text-decoration: none;
+}
+
+#links {
+display: flex;
+}
+.error {
+color: #FF0000;
+}
+
