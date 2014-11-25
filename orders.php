@@ -15,11 +15,8 @@
             $liEmail = $_SESSION['email'];
             $liName = $_SESSION['firstName'];
             $liRole = $_SESSION['role'];
-            $conn = new mysqli("localhost", "root", "budget", "project");
-               if($conn->connect_error) {
-                    die("Connect to mysql failed: " . $conn->connect_error);
-               } 
-        }
+        	include_once("./config.php");
+		}
 
     ?>
     <h1 id="header">S&W Games and Toys - Orders</h1>

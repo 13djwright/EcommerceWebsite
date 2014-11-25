@@ -41,11 +41,8 @@
 	</div>
 	    <div id="results">
 	        <?php 
-               $conn = new mysqli("localhost", "root", "budget", "project");
-               if($conn->connect_error) {
-                    die("Connect to mysql failed: " . $conn->connect_error);
-               }
-               if($_SERVER["REQUEST_METHOD"] == "POST") {
+               include_once('./config.php');
+			   if($_SERVER["REQUEST_METHOD"] == "POST") {
                     if(!empty($_POST["search"])) {
                         $search = test_input($_POST["search"]);
                         $param = "%{$_POST[search]}%";

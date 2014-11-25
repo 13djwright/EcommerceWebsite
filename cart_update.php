@@ -7,12 +7,7 @@ if(!isset($_SESSION['email']) || empty($_SESSION['email'])) {
     header("Location:../project/");
 }
 else{ 
-   $conn = new mysqli("localhost", "root", "budget", "project");
-
-    if($conn->connect_error) {
-        die("Connect to mysql failed: " . $conn->connect_error);
-    }
- 
+	include_once("./config.php"); 
     $email = $_SESSION['email'];
     $productID = test_input($_POST["product_id"]);
     $productQuantity = test_input($_POST["product_quantity"]);

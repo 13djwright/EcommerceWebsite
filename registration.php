@@ -11,12 +11,7 @@ insert the data into database
 --!>
 <?php
 $addressErr = $firstNameErr = $lastNameErr = $emailErr = $passwordErr = $repasswordErr = $zipCodeErr = $stateErr = "";
-$conn = new mysqli("localhost", "root", "budget", "project");
-
-if($conn->connect_error) {
-    die("Connect to mysql failed: " . $conn->connect_error);
-}
-
+include_once("./config.php");
 $address = $firstName = $lastName = $email = $password = $repassword = $zipCode = $state = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //check that each variable is not empty

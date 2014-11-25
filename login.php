@@ -6,12 +6,7 @@
 <body>
 <?php
 $error = $email = $password = "";
-$conn = new mysqli("localhost", "root", "budget", "project");
-
-if($conn->connect_error) {
-    die("Connect to mysql failed: " . $conn->connect_error);
-}
-
+include_once("./config.php");
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if(empty($_POST["email"]) || empty($_POST["password"])) {
