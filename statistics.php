@@ -40,5 +40,7 @@
 				?>
 			</div>
 		</div>
+<!--TODO:
+		Its pretty open here. Maybe just a few various functions and what not. -->
 	</body>
 </html>
