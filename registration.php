@@ -4,11 +4,7 @@
 <link rel="stylesheet" type="text/css" href="./stylesheet.css"/>
 </head>
 <body>
-<!--TODO: 
-check that all data is here
-check primary key is not taken
-insert the data into database
---!>
+<!--TODO: check that all data is here check primary key is not taken insert the data into database --!>
 <?php
 $addressErr = $firstNameErr = $lastNameErr = $emailErr = $passwordErr = $repasswordErr = $zipCodeErr = $stateErr = "";
 include_once("./config.php");
