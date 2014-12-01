@@ -25,7 +25,7 @@
 				session_start();
 				$_SESSION['firstName'] = $firstName;
 				$_SESSION['email'] = $dbemail;
-				$_SESSION['ROLE'] = $role;
+				$_SESSION['role'] = $role;
 				header("Location:../project/");
 			}
 			else {

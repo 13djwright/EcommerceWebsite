@@ -25,6 +25,12 @@
 						echo "<p>Welcome, {$liName}!</p>";
 						echo "<a href='./basket.php'>Basket</a>";
 						echo "<a href='./previous_orders.php'>Orders</a>";
+						if($liRole == "STAFF" || $liRole == "MANAGER") {
+							echo "<a href='./products.php'>Product Details</a>";
+						}
+						if($liRole == "MANAGER") {
+							echo "<a href='./statistics.php'>Statistics</a>";
+						}
 						echo "<a href='./logout.php'>Logout</a>";
 					}
 					else {

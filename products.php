@@ -1,6 +1,7 @@
+<!-- this is a template for making new pages -->
 <html>
 	<head>
-		<title>Sales Stats</title>
+		<title>Product Details</title>
 		<link rel="stylesheet" type="text/css" href="./stylesheet.css">
 	</head>
 
@@ -25,9 +26,6 @@
 						echo "<p>Welcome, {$liName}!</p>";
 						echo "<a href='./basket.php'>Basket</a>";
 						echo "<a href='./previous_orders.php'>Orders</a>";
-						if($liRole == "STAFF" || $liRole == "MANAGER") {
-							echo "<a href='./products.php'>Product Details</a>";
-						}
 						if($liRole == "MANAGER") {
 							echo "<a href='./statistics.php'>Statistics</a>";
 						}
