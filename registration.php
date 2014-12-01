@@ -4,8 +4,9 @@
 <link rel="stylesheet" type="text/css" href="./stylesheet.css"/>
 </head>
 <body>
-<!--TODO: check that all data is here check primary key is not taken insert the data into database --!>
 <?php
+//TODO: check that all data is here check primary key is not taken insert the data into database
+
 $addressErr = $firstNameErr = $lastNameErr = $emailErr = $passwordErr = $repasswordErr = $zipCodeErr = $stateErr = "";
 include_once("./config.php");
 $address = $firstName = $lastName = $email = $password = $repassword = $zipCode = $state = "";
@@ -97,7 +98,7 @@ $stateErr === "") {
         $stmt->bind_param("sssssis", $firstName, $lastName, $email, $password, $address, $zipCode, $state);
         $stmt->execute();
         $stmt->close();
-        $stmt = $conn->prepare("INSERT INTO orders(userEmail) VALUES (?)";
+        $stmt = $conn->prepare("INSERT INTO orders(userEmail) VALUES (?)");
         $stmt->bind_param("s",$email);
         $stmt->execute();
         $stmt->close();
