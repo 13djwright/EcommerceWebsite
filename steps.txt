@@ -1,4 +1,0 @@
-Use reinstallDatabase.sh
-    set up database (createTables.sql)
-    insert values into database (products first, games.sql)
-
