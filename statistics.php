@@ -30,6 +30,7 @@
 						}
 						if($liRole == "MANAGER") {
                             echo "<a href='./statistics.php' class='active'>Statistics</a>";
+                        	
                         }
 						echo "<a href='./logout.php'>Logout</a>";
 					}
@@ -39,7 +40,15 @@
 					}
 				?>
 			</div>
+			<div id="statcalc">
+				<?php
+				//Statistic calculation -- Brandon
+
+
+				?>
+			</div>
 		</div>
+
 <!--TODO:
 		Its pretty open here. Maybe just a few various functions and what not. -->
 	</body>
