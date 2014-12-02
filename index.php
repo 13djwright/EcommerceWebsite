@@ -6,6 +6,7 @@
 
 	<body>
 		<?php
+//brandon making a change!
 			session_start();
 			$liEmail = $liName = $liRole = "";
 			if(!isset($_SESSION['email']) || empty($_SESSION['email'])) {
