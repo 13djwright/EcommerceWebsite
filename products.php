@@ -23,9 +23,12 @@
 			<div id="links">
 				<?php
 					if($liEmail){
-						echo "<p>Welcome, {$liName}!</p>";
+						echo "<a href='../project/'>Home</a>";
 						echo "<a href='./basket.php'>Basket</a>";
 						echo "<a href='./previous_orders.php'>Orders</a>";
+						if($liRole == "STAFF" || $liRole == "MANAGER") {
+                            echo "<a href='./products.php' class='active'>Product Details</a>";
+                        }	
 						if($liRole == "MANAGER") {
 							echo "<a href='./statistics.php'>Statistics</a>";
 						}

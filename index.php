@@ -23,7 +23,7 @@
 			<div id="links">
 				<?php
 					if($liEmail){
-						echo "<p>Welcome, {$liName}!</p>";
+						echo "<a href='../project/' class='active'>Home</a>";
 						echo "<a href='./basket.php'>Basket</a>";
 						echo "<a href='./previous_orders.php'>Orders</a>";
 						if($liRole == "STAFF" || $liRole == "MANAGER") {
@@ -33,6 +33,7 @@
 							echo "<a href='./statistics.php'>Statistics</a>";
 						}
 						echo "<a href='./logout.php'>Logout</a>";
+						echo "<a href='./account.php'>Account Settings</a>";
 					}
 					else {
 						echo "<a href='./registration.php'>New User Register</a>";
