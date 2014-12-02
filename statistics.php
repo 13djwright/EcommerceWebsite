@@ -28,9 +28,6 @@
 						if($liRole == "STAFF" || $liRole == "MANAGER") {
 							echo "<a href='./products.php'>Product Details</a>";
 						}
-						if($liRole == "MANAGER") {
-							echo "<a href='./statistics.php'>Statistics</a>";
-						}
 						echo "<a href='./logout.php'>Logout</a>";
 					}
 					else {
