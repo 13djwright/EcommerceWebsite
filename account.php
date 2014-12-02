@@ -1,6 +1,7 @@
+<!-- this is a template for making new pages -->
 <html>
 	<head>
-		<title>Sales Stats</title>
+		<title>S&W Home</title>
 		<link rel="stylesheet" type="text/css" href="./stylesheet.css">
 	</head>
 
@@ -22,16 +23,17 @@
 			<div id="links">
 				<?php
 					if($liEmail){
-						echo "<a href='../project'>Home</a>";
+						echo "<a href='../project/'>Home</a>";
 						echo "<a href='./basket.php'>Basket</a>";
 						echo "<a href='./previous_orders.php'>Orders</a>";
 						if($liRole == "STAFF" || $liRole == "MANAGER") {
 							echo "<a href='./products.php'>Product Details</a>";
 						}
 						if($liRole == "MANAGER") {
-                            echo "<a href='./statistics.php' class='active'>Statistics</a>";
-                        }
-						echo "<a href='./logout.php'>Logout</a>";
+							echo "<a href='./statistics.php'>Statistics</a>";
+						}
+						echo "<a href='./logout.php'>Logout</a>";i
+						echo "<a href='./account.php' class='active'>Account Settings</a>";
 					}
 					else {
 						echo "<a href='./registration.php'>New User Register</a>";
@@ -40,7 +42,5 @@
 				?>
 			</div>
 		</div>
-<!--TODO:
-		Its pretty open here. Maybe just a few various functions and what not. -->
 	</body>
 </html>

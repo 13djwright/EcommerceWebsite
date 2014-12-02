@@ -22,6 +22,7 @@
 			<div id="links">
 				<a href="../project/">Home</a>
 				<a href="./basket.php">Basket</a>
+				<a href="./previous_orders.php" class='active'>Orders</a>
 				<?php
 					if($liRole == "STAFF" || $liRole == "MANAGER") {
 						echo "<a href='./products.php'>Product Details</a>";
@@ -30,7 +31,7 @@
 						echo "<a href='./statistics.php'>Statistics</a>";
 					}
 				?>
-				<a href="./logout.php">Log Out</a>
+				<a href="./logout.php">Logout</a>
 			</div>
 
 			<div id="orders">
