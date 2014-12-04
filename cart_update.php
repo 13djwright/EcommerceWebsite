@@ -37,7 +37,7 @@ TODO: Change so that the redirect will still contain the same search results rat
 			$addpstmt->execute();
 			$addpstmt->close();
 		}
-		header("Location:../project/");
+		//header("Location:../project/");
 	}
 
 

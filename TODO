@@ -3,11 +3,11 @@ Extras TODO:
 
 -	add option to view account details and change account details (Brandon)
 
--	add sort by option when searching to sort by price low to high/hilo/ etc to search functions (Devin)
-
--	change search function so each search is saved (refreshing the page doesn't wipe out searches) (Devin)
-
 -	implement sales statistics under manager ID (Brandon)
+
+-	finish viewing previous orders page (Brandon)
+
+-	set up product updates and order shipping (Devin)
 
 -	set up promotions via manager (Devin)
 

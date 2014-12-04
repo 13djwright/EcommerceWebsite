@@ -11,7 +11,7 @@
 		$deletestmt->bind_param("i",$orderDetailsID);
 		$deletestmt->execute();
 		$deletestmt->close();
-		header("Location:./orders.php");
+		header("Location:./basket.php");
 	}
 
 	function test_input($data) {

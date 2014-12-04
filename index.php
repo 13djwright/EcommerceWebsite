@@ -6,7 +6,6 @@
 
 	<body>
 		<?php
-//brandon making a change!
 			session_start();
 			$liEmail = $liName = $liRole = "";
 			if(!isset($_SESSION['email']) || empty($_SESSION['email'])) {
@@ -43,7 +42,7 @@
 			</div>
 			<div id="searching">
 				<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-					<input type="text" name="search" placeholder="Search...">
+					<input type="text" name="search" placeholder="Search..." <?php if(isset($_POST['search'])) { echo "value={$_POST['search']}";} ?>>
 					<span>Sort by&nbsp;</span>
 					<select name="sort" id="sort">
 						<option value="alphabetical" <?php if($_POST['sort'] == "alphabetical") { echo 'selected="selected"';} ?>>Name</option>
@@ -73,15 +72,17 @@
 							else {
 								$sort_param = "name asc";
 							}
-							$_SESSION['sort'] = $sort_param;
+							$_SESSION['search'] = $search;
 							$param = "%{$search}%";
 							$stmt = $conn->prepare("SELECT id,name,price,quantity FROM products WHERE name LIKE ? ORDER BY {$sort_param}");
 							$stmt->bind_param("s", $param);
 							$stmt->execute();
+							$stmt->store_result();
 							$stmt->bind_result($id,$name,$price,$quantity);
+							echo "<span>Results: {$stmt->num_rows()}</span>";
 							while ($stmt->fetch()) {
 								echo "<div class='product'>";
-								echo "<form method='post' action='cart_update.php'>";
+								echo "<form method='post' action='cart_update.php' target='hidden_form'>";
 								echo "<div class='product_name'>{$name}</div>";
 								echo "<div class='product_price'>price: \${$price}</div>";
 								echo "<div class='product_quantity'>stock: {$quantity}</div>";
@@ -96,6 +97,8 @@
 								echo "</form>";
 								echo "</div>";
 							}
+							$stmt->close();
+							echo "<iframe style='display:none' name='hidden_form'></iframe>";
 						}
 				   }
 
