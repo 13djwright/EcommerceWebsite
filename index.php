@@ -32,8 +32,8 @@
 						if($liRole == "MANAGER") {
 							echo "<a href='./statistics.php'>Statistics</a>";
 						}
-						echo "<a href='./logout.php'>Logout</a>";
 						echo "<a href='./account.php'>Account Settings</a>";
+						echo "<a href='./logout.php'>Logout</a>";
 					}
 					else {
 						echo "<a href='./registration.php'>New User Register</a>";
@@ -44,6 +44,12 @@
 			<div id="searching">
 				<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 					<input type="text" name="search" placeholder="Search...">
+					<span>Sort by&nbsp;</span>
+					<select name="sort" id="sort">
+						<option value="alphabetical" <?php if($_POST['sort'] == "alphabetical") { echo 'selected="selected"';} ?>>Name</option>
+						<option value="price-asc-rank" <?php if($_POST['sort'] == "price-asc-rank") { echo 'selected="selected"';} ?>>Price: Low to High</option>
+						<option value="price-desc-rank"<?php if($_POST['sort'] == "price-desc-rank") { echo 'selected="selected"';} ?>>Price: High to Low</option>
+					</select>
 					<input type="submit" value="Submit">
 				</form>
 			</div>
@@ -53,9 +59,24 @@
 				   if($_SERVER["REQUEST_METHOD"] == "POST") {
 						if(!empty($_POST["search"])) {
 							$search = test_input($_POST["search"]);
-							$param = "%{$_POST[search]}%";
-							$stmt = $conn->prepare("SELECT id,name,price,quantity FROM products WHERE name LIKE ?");
-							$stmt->bind_param("s",$param);
+							$sort = test_input($_POST["sort"]);
+							$sort_param = "";
+							if($sort == "name") {
+								$sort_param = "name asc";
+							}
+							else if($sort == "price-asc-rank") {
+								$sort_param = "price asc";
+							}
+							else if($sort == "price-desc-rank") {
+								$sort_param = "price desc";
+							}
+							else {
+								$sort_param = "name asc";
+							}
+							$_SESSION['sort'] = $sort_param;
+							$param = "%{$search}%";
+							$stmt = $conn->prepare("SELECT id,name,price,quantity FROM products WHERE name LIKE ? ORDER BY {$sort_param}");
+							$stmt->bind_param("s", $param);
 							$stmt->execute();
 							$stmt->bind_result($id,$name,$price,$quantity);
 							while ($stmt->fetch()) {

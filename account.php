@@ -1,4 +1,3 @@
-<!-- this is a template for making new pages -->
 <html>
 	<head>
 		<title>S&W Home</title>
@@ -32,8 +31,8 @@
 						if($liRole == "MANAGER") {
 							echo "<a href='./statistics.php'>Statistics</a>";
 						}
-						echo "<a href='./logout.php'>Logout</a>";i
 						echo "<a href='./account.php' class='active'>Account Settings</a>";
+						echo "<a href='./logout.php'>Logout</a>";
 					}
 					else {
 						echo "<a href='./registration.php'>New User Register</a>";

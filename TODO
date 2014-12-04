@@ -1,11 +1,14 @@
 Extras TODO:
--	get an actual check out working (payment billing/shipping/etc)
+-	get an actual check out working (payment billing/shipping/etc) (Brandon?)
 
--	add option to view account details and change account details
+-	add option to view account details and change account details (Brandon)
 
--	add sort by option when searching to sort by price low to high/hilo/ etc 
-	to search functions
+-	add sort by option when searching to sort by price low to high/hilo/ etc to search functions (Devin)
+
+-	change search function so each search is saved (refreshing the page doesn't wipe out searches) (Devin)
 
 -	implement sales statistics under manager ID (Brandon)
 
--	set up promotions via manager (Brandon)
+-	set up promotions via manager (Devin)
+
+-	if try to add to basket and not logged in tell them (Devin)

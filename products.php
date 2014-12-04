@@ -32,6 +32,7 @@
 						if($liRole == "MANAGER") {
 							echo "<a href='./statistics.php'>Statistics</a>";
 						}
+						echo "<a href='./account.php'>Account Settings</a>";
 						echo "<a href='./logout.php'>Logout</a>";
 					}
 					else {

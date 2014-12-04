@@ -33,6 +33,7 @@
 						echo "<a href='./statistics.php'>Statistics</a>";
 					}
 				?>
+				<a href="./account.php">Account Settings</a>
 				<a href="./logout.php">Logout</a>
 			</div>
 
