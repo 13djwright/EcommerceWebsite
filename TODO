@@ -1,14 +1,25 @@
 Extras TODO:
--	get an actual check out working (payment billing/shipping/etc) (Brandon?)
 
--	add option to view account details and change account details (Brandon)
+BRANDON:
+-	get an actual check out working (payment billing/shipping/etc) (probably a new file)
 
--	implement sales statistics under manager ID (Brandon)
+-	add option to view account details and change account details (account.php) 
 
--	finish viewing previous orders page (Brandon)
+-	implement sales statistics under manager ID (statistics.php)
 
--	set up product updates and order shipping (Devin)
+DEVIN:
+-	actually hash the passwords  (look into mysql hashing and php hashing)
 
--	set up promotions via manager (Devin)
+-	finish viewing previous orders page 
 
--	if try to add to basket and not logged in tell them (Devin)
+-	set up product updates and order shipping 
+
+-	set up promotions via manager 
+
+-	if try to add to basket and not logged in tell them (cart_update.php?)
+
+-	Show items in cart (maybe part of the link to Basket ((Would have to be on each page?)))
+
+-	Make adding items to cart more noticable
+
+
