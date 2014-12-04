@@ -5,16 +5,18 @@ BRANDON:
 
 -	add option to view account details and change account details (account.php) 
 
--	implement sales statistics under manager ID (statistics.php)
+-	*implement sales statistics under manager ID (statistics.php)
 
 DEVIN:
 -	actually hash the passwords  (look into mysql hashing and php hashing)
 
--	finish viewing previous orders page 
+-	*finish viewing previous orders page 
 
--	set up product updates and order shipping 
+-	*set up product updates and order shipping 
 
--	set up promotions via manager 
+-	*set up promotions via manager 
+
+-	change each order to have a total price? (Could be calculated on the fly but it wouldnt be fun)
 
 -	if try to add to basket and not logged in tell them (cart_update.php?)
 
@@ -22,4 +24,4 @@ DEVIN:
 
 -	Make adding items to cart more noticable
 
-
+-	Make a number limit on how many items can be found? (multiple pages?)
