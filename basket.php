@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>S&W Orders</title>
+		<title>S&W Basket</title>
 		<link rel="stylesheet" href="./stylesheet.css" type="text/css">
 	</head>
 
@@ -16,6 +16,12 @@
 			$liName = $_SESSION['firstName'];
 			$liRole = $_SESSION['role'];
 			include_once("./config.php");
+			$stmt = $conn->prepare("select count(*) from orderDetails D where D.orderID=(select max(id) from orders O where O.userEmail=?)");
+			$stmt->bind_param("s", $liEmail);
+			$stmt->execute();
+			$stmt->bind_result($items_in_basket);
+			$stmt->fetch();
+			$stmt->close();
 		}
 
 		?>
@@ -23,11 +29,12 @@
 		<div id="main">
 			<div id="links">
 				<a href="../project/">Home</a>
-				<a href="./basket.php" class='active'>Basket</a>
+				<a href="./basket.php" class='active'>Basket <?php echo "({$items_in_basket})";?></a>
 				<a href="./previous_orders.php">Orders</a>
 				<?php
 					if($liRole == "STAFF" || $liRole == "MANAGER") {
 						echo "<a href='./products.php'>Product Details</a>";
+						echo "<a href='./orders.php'>Order Details</a>";
 					}
 					if($liRole == "MANAGER") {
 						echo "<a href='./statistics.php'>Statistics</a>";
@@ -47,11 +54,22 @@
 					$bstmt->bind_result($result);
 					$bstmt->fetch();
 					$bstmt->close();
+					$stmt = $conn->prepare("select SUM(P.price*D.quantity) from orderDetails D inner join products P on P.id=D.productID where D.orderID=?");
+					$stmt->bind_param("s", $result);
+					$stmt->execute();
+					$stmt->bind_result($total);
+					$stmt->fetch();
+					$stmt->close();
 					if($result) {
 						$stmt = $conn->prepare("select D.id, P.name, P.price, D.quantity from orderDetails D inner join products P on P.id=D.productID where D.orderID=?");
 						$stmt->bind_param("i",$result);
 						$stmt->execute();
 						$stmt->bind_result($orderDetailsID,$pname,$pprice,$pquantity);
+						echo "<div class='product'>";
+						echo "<div class='product_name'><strong>Name</strong></div>";
+						echo "<div class='product_price'><strong>Price</strong></div>";
+						echo "<div class='product_quantity'><strong>Quantity</strong></div>";
+						echo "</div>";
 						while($stmt->fetch()) {
 							echo "<div class='product'>";
 							echo "<form method='post' action='removeItem.php'>";
@@ -65,6 +83,10 @@
 						}
 						if($orderDetailsID) {
 							echo "<form action='./placeorder.php' method='post'>"; 
+							echo "<div class='product'>";
+							echo "<div class='product_name'><strong>Total:</strong></div>";
+							echo "<div class='product_price'><strong>{$total}</strong></div>";
+							echo "</div>";
 							echo "<input type='hidden' name='orderID' value={$result}>";
 							echo "<input type='submit' action='' value='Place Order'>";
 							echo "</form>";

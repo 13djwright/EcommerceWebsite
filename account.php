@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>S&W Home</title>
+		<title>Settings</title>
 		<link rel="stylesheet" type="text/css" href="./stylesheet.css">
 	</head>
 
@@ -15,6 +15,13 @@
 				$liEmail = $_SESSION['email'];
 				$liName = $_SESSION['firstName'];
 				$liRole = $_SESSION['role'];
+				include_once('./config.php');
+				$stmt = $conn->prepare("select count(*) from orderDetails D where D.orderID=(select max(id) from orders O where O.userEmail=?)");
+				$stmt->bind_param("s", $liEmail);
+				$stmt->execute();
+				$stmt->bind_result($items_in_basket);
+				$stmt->fetch();
+				$stmt->close();
 			}
 		?>
 		<h1 id="header">S&W Games and Toys</h1>
@@ -23,10 +30,11 @@
 				<?php
 					if($liEmail){
 						echo "<a href='../project/'>Home</a>";
-						echo "<a href='./basket.php'>Basket</a>";
+						echo "<a href='./basket.php'>Basket ({$items_in_basket})</a>";
 						echo "<a href='./previous_orders.php'>Orders</a>";
 						if($liRole == "STAFF" || $liRole == "MANAGER") {
 							echo "<a href='./products.php'>Product Details</a>";
+							echo "<a href='./orders.php'>Order Details</a>";
 						}
 						if($liRole == "MANAGER") {
 							echo "<a href='./statistics.php'>Statistics</a>";

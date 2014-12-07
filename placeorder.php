@@ -18,7 +18,7 @@
 		$stmt->bind_param("s",$email);
 		$stmt->execute();
 		$stmt->close();
-		header("Location:./orders.php");
+		header("Location:./previous_orders.php");
 		 
 	/*
 	Pass in orderID from previous button (use input hidden with value of the orderID.

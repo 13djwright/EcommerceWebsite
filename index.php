@@ -17,11 +17,6 @@
 				$liRole = $_SESSION['role'];
 			}
 		?>
-		<script>
-			function not_logged_in() {
-				
-			}
-		</script>
 		<h1 id="header">S&W Games and Toys</h1>
 		<div id="main">
 			<div id="links">
@@ -31,14 +26,15 @@
 						$stmt = $conn->prepare("select count(*) from orderDetails D where D.orderID=(select max(id) from orders O where O.userEmail=?)");
 						$stmt->bind_param("s", $liEmail);
 						$stmt->execute();
-						$stmt->store_result();
 						$stmt->bind_result($items_in_basket);
+						$stmt->fetch();
 						$stmt->close();
 						echo "<a href='../project/' class='active'>Home</a>";
 						echo "<a href='./basket.php'>Basket ({$items_in_basket})</a>";
 						echo "<a href='./previous_orders.php'>Orders</a>";
 						if($liRole == "STAFF" || $liRole == "MANAGER") {
 							echo "<a href='./products.php'>Product Details</a>";
+							echo "<a href='./orders.php'>Orders Details</a>";
 						}
 						if($liRole == "MANAGER") {
 							echo "<a href='./statistics.php'>Statistics</a>";
@@ -94,7 +90,7 @@
 							$alert_message = "\"You must be logged in to add items to your cart.\"";
 							while ($stmt->fetch()) {
 								echo "<div class='product'>";
-								echo "<form method='get' action='cart_update.php' target='hidden_form'>";
+								echo "<form method='post' action='cart_update.php' target='hidden_form'>";
 								echo "<div class='product_name'>{$name}</div>";
 								echo "<div class='product_price'>price: \${$price}</div>";
 								echo "<div class='product_quantity'>stock: {$quantity}</div>";

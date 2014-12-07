@@ -15,17 +15,24 @@
 				$liName = $_SESSION['firstName'];
 				$liRole = $_SESSION['role'];
 				include_once("./config.php");
+				$stmt = $conn->prepare("select count(*) from orderDetails D where D.orderID=(select max(id) from orders O where O.userEmail=?)");
+				$stmt->bind_param("s", $liEmail);
+				$stmt->execute();
+				$stmt->bind_result($items_in_basket);
+				$stmt->fetch();
+				$stmt->close();
 			}
 		?>
 		<h1 id="header">S&W Games and Toys - Orders</h1>
 		<div id="main">
 			<div id="links">
 				<a href="../project/">Home</a>
-				<a href="./basket.php">Basket</a>
+				<a href="./basket.php">Basket <?php echo "({$items_in_basket})";?></a>
 				<a href="./previous_orders.php" class='active'>Orders</a>
 				<?php
 					if($liRole == "STAFF" || $liRole == "MANAGER") {
 						echo "<a href='./products.php'>Product Details</a>";
+						echo "<a href='./orders.php'>Order Details</a>";
 					}
 					if($liRole == "MANAGER") {
 						echo "<a href='./statistics.php'>Statistics</a>";
@@ -46,21 +53,11 @@
 					//ignore --> $stmt = $conn->prepare("SELECT id, dateOrdered, dateShipped from orders where id != (SELECT MAX(id) from orders where userEmail=?) AND userEmail=?");
 					$stmt = $conn->prepare("select O.id, O.dateOrdered, O.dateShipped from orders O where O.id<>(select max(id) from orders O2 where O2.userEmail=?) and O.userEmail=?");
 					$stmt->bind_param("ss",$liEmail,$liEmail);
-					if(!$stmt->execute()) {
-						echo "Failed.";	
+					$orderID = $dateOrdered = $dateShippped = NULL;
+					if(!$stmt->bind_result($orderID,$dateOrdered,$dateShipped)) {
+						echo "bind result failed";
 					}
-					else {
-						echo "not failed";
-					}
-					//$stmt->bind_result($orderID,$dateOrdered,$dateShipped);
-					echo "test";
-					$result = $stmt->fetch_result();
-					echo "res" . $result;
-					while($data = $result->fetch_assoc()) {
-						$stat[] = $data;
-						echo "data";
-					}
-					echo "test";
+					
 					while($stmt->fetch()) {
 						//get all the products from the order
 						echo "<div class='order'>";
