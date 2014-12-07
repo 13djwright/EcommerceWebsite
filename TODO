@@ -18,8 +18,6 @@ DEVIN:
 
 -	change each order to have a total price? (Could be calculated on the fly but it wouldnt be fun)
 
--	if try to add to basket and not logged in tell them (cart_update.php?)
-
 -	Show items in cart (maybe part of the link to Basket ((Would have to be on each page?)))
 
 -	Make adding items to cart more noticable

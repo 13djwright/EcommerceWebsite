@@ -1,7 +1,4 @@
 <?php
-/*
-TODO: Change so that the redirect will still contain the same search results rather than clearing the page. This might involve useing GET instead of POST
-*/
 	session_start();
 	if(!isset($_SESSION['email']) || empty($_SESSION['email'])) {
 		header("Location:../project/");
@@ -37,7 +34,7 @@ TODO: Change so that the redirect will still contain the same search results rat
 			$addpstmt->execute();
 			$addpstmt->close();
 		}
-		//header("Location:../project/");
+		header("Location:./login.php");
 	}
 
 
