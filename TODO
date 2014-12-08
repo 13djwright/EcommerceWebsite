@@ -1,19 +1,23 @@
 BRANDON:
--	get an actual check out working (payment billing/shipping/etc) (probably a new file)
+-	*get an actual check out working (payment billing/shipping/etc) (probably a new file)
 
--	add option to view account details and change account details (account.php) 
+-	*add option to view account details and change account details (account.php) 
 
 -	*implement sales statistics under manager ID (statistics.php)
 
 DEVIN:
 -	actually hash the passwords  (look into mysql hashing and php hashing)
 
--	*set up product updates (be able to add new products). 
+-	*set up product updates
 
--	set up css on all pages to make it look uniform
+-	*be able to add new products
 
--	*order shipping (orders.php) 
+-	*managers are able to escalate priviledges of customers to staff/manager
 
--	*set up promotions via manager 
+-	*set up css on all pages to make it look uniform
+
+-	*order shipping (orders.php - show all pending and a button next to ship) 
+
+-	*set up promotions via manager (products.php, added function along w/ staff)
 
 -	Make a number limit on how many items can be found? (multiple pages? keyword limit)
