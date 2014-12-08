@@ -1,3 +1,28 @@
+.order {
+	border: 1px solid black;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	
+}
+
+.orderHeader {
+	margin-bottom: 10px;
+	padding: 10px;
+	background-color: #aaa;
+	display: flex;
+	justify-content: space-around;
+}
+
+.order-label {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.order-label span {
+	display: block;
+}
+
 a.active {
 	color: red;
 }

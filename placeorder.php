@@ -5,13 +5,18 @@
 	}
 	else{
 		include_once("./config.php"); 
-		echo "test";
 		$email = $_SESSION['email'];
 		$orderID = $_POST['orderID'];
 		$date = date("Y-m-d");
+		$stmt = $conn->prepare("select SUM(P.price*D.quantity) from orderDetails D inner join products P on P.id=D.productID where D.orderID=?");
+		$stmt->bind_param("i", $orderID);
+		$stmt->execute();
+		$stmt->bind_result($total);
+		$stmt->fetch();
+		$stmt->close();
 		echo "email: {$email} placed an orderNum {$orderID} at {$date}.";
-		$stmt = $conn->prepare("UPDATE orders SET dateOrdered=? WHERE id=?");
-		$stmt->bind_param("si",$date,$orderID);
+		$stmt = $conn->prepare("UPDATE orders SET dateOrdered=?, total=? WHERE id=?");
+		$stmt->bind_param("sdi",$date,$total,$orderID);
 		$stmt->execute();
 		$stmt->close();
 		$stmt = $conn->prepare("INSERT INTO orders(userEmail) VALUES (?)");
@@ -19,15 +24,5 @@
 		$stmt->execute();
 		$stmt->close();
 		header("Location:./previous_orders.php");
-		 
-	/*
-	Pass in orderID from previous button (use input hidden with value of the orderID.
-	Change this order to have the dateOrdered=right now.
-	Insert a new row into the orders table with same email.
-	When displaying previous orders show all except the highest valued one (which is the current basket).
-	Add a total to the order? (not sure how to calculate this?)
-
-	*/
-
 	}
 ?>

@@ -8,7 +8,10 @@ BRANDON:
 DEVIN:
 -	actually hash the passwords  (look into mysql hashing and php hashing)
 
--	*finish viewing previous orders page 
+ession_destroy();
+    session_write_close();
+	    setcookie(session_name(),'',0,'/');
+		    session_regenerate_id(true);*finish viewing previous orders page 
 
 -	*set up product updates and order shipping 
 
@@ -16,8 +19,6 @@ DEVIN:
 
 -	change each order to have a total price? (Could be calculated on the fly but it wouldnt be fun)
 
--	Show items in cart (maybe part of the link to Basket ((Would have to be on each page?)))
-
 -	Make adding items to cart more noticable
 
--	Make a number limit on how many items can be found? (multiple pages?)
+-	Make a number limit on how many items can be found? (multiple pages? keyword limit)
