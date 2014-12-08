@@ -104,3 +104,37 @@ form input[type="text"] {
 	color: #FF0000;
 }
 
+#statcalc .product_name{
+	width: 300px;
+	float: left;
+}
+
+#statcalc .week{
+	float: left;
+	width: 100px;
+}
+#statcalc .month{
+	float: left;
+	width: 100px;
+}
+#statcalc .year{
+	float: left;
+	width: 100px;
+}
+#statcalc .total{
+	float: left;
+	width: 70px;
+}
+#statcalc .all_products{
+	font-weight: bold;
+	float: left;
+}
+#statcalc .profit{
+	float: left;
+	width: 100px;
+}
+#statcalc .interval_profit{
+	width: 300px;
+	float: left;
+	font-weight: bold;
+}
