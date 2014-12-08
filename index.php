@@ -90,7 +90,7 @@
 							$alert_message = "\"You must be logged in to add items to your cart.\"";
 							while ($stmt->fetch()) {
 								echo "<div class='product'>";
-								echo "<form method='post' action='cart_update.php' target='hidden_form'>";
+								echo "<form method='post' action='cart_update.php'>";
 								echo "<div class='product_name'>{$name}</div>";
 								echo "<div class='product_price'>price: \${$price}</div>";
 								echo "<div class='product_quantity'>stock: {$quantity}</div>";
@@ -112,7 +112,6 @@
 								echo "</div>";
 							}
 							$stmt->close();
-							echo "<iframe style='display:none' name='hidden_form'></iframe>";
 						}
 				   }
 

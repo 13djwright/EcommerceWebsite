@@ -74,6 +74,7 @@ a.active {
 .login {
 	min-width: 500px;
 	width: 500px;
+	margin-top: 20px;
 }
 
 .register label, .login label {

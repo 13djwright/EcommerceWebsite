@@ -130,41 +130,43 @@
 
 
 		?>
-
-		<p><span class="error">* required field</span></p>
-		<div class="register">
-			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-				<label>First name: </label><input type="text" name="firstName" value="<?php echo $firstName;?>">
-				<span class="error">* <?php echo $firstNameErr;?></span>
-				<br>
-				<label>Last name:</label> <input type="text" name="lastName" value="<?php echo $lastName;?>">
-				<span class="error">* <?php echo $lastNameErr;?></span>
-				<br>
-				<label>Email:</label> <input type="text" name="email" value="<?php echo $email;?>">
-				<span class="error">* <?php echo $emailErr;?></span>
-				<br>
-				<label>Password:</label> <input type="password" name="password">
-				<span class="error">* <?php echo $passwordErr;?></span>
-				<br>
-				<label>Re-enter:</label> <input type="password" name="repassword">
-				<span class="error">* <?php echo $repasswordErr;?></span>
-				<br>
-				<label>Address:</label> <input type="text" name="address" value="<?php echo $address;?>">
-				<span class="error">* <?php echo $addressErr;?></span>
-				<br>
-				<label>Zipcode:</label> <input type="text" name="zipCode" value="<?php echo $zipCode;?>">
-				<span class="error">* <?php echo $zipCodeErr;?></span>
-				<br>
-				<label>State Abrv:</label> <input type="text" name="state" value="<?php echo $state;?>">
-				<span class="error">* <?php echo $stateErr;?></span>
-				<br>
-				<div class="buttons">
-					<input type="submit" value="Submit">
-					<a href="../project/">
-						<input type="button" value="Cancel">
-					</a>
-				</div>
-			</form>
+		<h1 id='header'>S&W Games and Toys</h1>
+		<div id="main">
+			<p><span class="error">* required field</span></p>
+			<div class="register">
+				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+					<label>First name: </label><input type="text" name="firstName" value="<?php echo $firstName;?>">
+					<span class="error">* <?php echo $firstNameErr;?></span>
+					<br>
+					<label>Last name:</label> <input type="text" name="lastName" value="<?php echo $lastName;?>">
+					<span class="error">* <?php echo $lastNameErr;?></span>
+					<br>
+					<label>Email:</label> <input type="text" name="email" value="<?php echo $email;?>">
+					<span class="error">* <?php echo $emailErr;?></span>
+					<br>
+					<label>Password:</label> <input type="password" name="password">
+					<span class="error">* <?php echo $passwordErr;?></span>
+					<br>
+					<label>Re-enter:</label> <input type="password" name="repassword">
+					<span class="error">* <?php echo $repasswordErr;?></span>
+					<br>
+					<label>Address:</label> <input type="text" name="address" value="<?php echo $address;?>">
+					<span class="error">* <?php echo $addressErr;?></span>
+					<br>
+					<label>Zipcode:</label> <input type="text" name="zipCode" value="<?php echo $zipCode;?>">
+					<span class="error">* <?php echo $zipCodeErr;?></span>
+					<br>
+					<label>State Abrv:</label> <input type="text" name="state" value="<?php echo $state;?>">
+					<span class="error">* <?php echo $stateErr;?></span>
+					<br>
+					<div class="buttons">
+						<input type="submit" value="Submit">
+						<a href="../project/">
+							<input type="button" value="Cancel">
+						</a>
+					</div>
+				</form>
+			</div>
 		</div>
 	</body>
 </html>

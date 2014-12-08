@@ -8,17 +8,12 @@ BRANDON:
 DEVIN:
 -	actually hash the passwords  (look into mysql hashing and php hashing)
 
-ession_destroy();
-    session_write_close();
-	    setcookie(session_name(),'',0,'/');
-		    session_regenerate_id(true);*finish viewing previous orders page 
+-	*set up product updates (be able to add new products). 
 
--	*set up product updates and order shipping 
+-	set up css on all pages to make it look uniform
+
+-	*order shipping (orders.php) 
 
 -	*set up promotions via manager 
-
--	change each order to have a total price? (Could be calculated on the fly but it wouldnt be fun)
-
--	Make adding items to cart more noticable
 
 -	Make a number limit on how many items can be found? (multiple pages? keyword limit)
