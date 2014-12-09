@@ -1,9 +1,19 @@
+.to-upper {
+	text-transform: uppercase;
+}
+
+.order form input[type='submit'] {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
 .order {
 	border: 1px solid black;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	padding-bottom: 10px;
-	
+	position: relative;	
 }
 
 .orderHeader {

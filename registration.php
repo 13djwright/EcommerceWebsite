@@ -7,9 +7,9 @@
 		<?php
 			//TODO: check that all data is here check primary key is not taken insert the data into database
 
-			$addressErr = $firstNameErr = $lastNameErr = $emailErr = $passwordErr = $repasswordErr = $zipCodeErr = $stateErr = "";
+			$addressErr = $firstNameErr = $lastNameErr = $emailErr = $passwordErr = $repasswordErr = $zipCodeErr = $stateErr = $cityErr = "";
 			include_once("./config.php");
-			$address = $firstName = $lastName = $email = $password = $repassword = $zipCode = $state = "";
+			$address = $firstName = $lastName = $email = $password = $repassword = $zipCode = $state = $city = "";
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			//check that each variable is not empty
 				if (empty($_POST["firstName"])) {
@@ -80,6 +80,12 @@
 				else {
 					$address = test_input($_POST["address"]);
 				}
+				if (empty($_POST["city"])) {
+					$addressErr = "City is required";
+				}
+				else {
+					$address = test_input($_POST["city"]);
+				}
 
 				//Check to make sure there are no errors, 
 				if(
@@ -90,7 +96,8 @@
 				$repasswordErr === "" && 
 				$addressErr === "" && 
 				$zipCodeErr === "" && 
-				$stateErr === "") {
+				$stateErr === "" &&
+				$cityErr === "") {
 						
 					$stmt = $conn->prepare("SELECT email FROM users WHERE email=?");
 					$stmt->bind_param("s",$email);
@@ -100,8 +107,8 @@
 					$stmt->close();
 					if(!$result) {
 						//new email so take all of the data and insert into users table
-						$stmt = $conn->prepare("INSERT INTO users(firstName, lastName, email, password, address, zipCode, state) VALUES (?,?,?,?,?,?,?)");
-						$stmt->bind_param("sssssis", $firstName, $lastName, $email, $password, $address, $zipCode, $state);
+						$stmt = $conn->prepare("INSERT INTO users(firstName, lastName, email, password, address, zipCode, state, city) VALUES (?,?,?,?,?,?,?,?)");
+						$stmt->bind_param("sssssis", $firstName, $lastName, $email, $password, $address, $zipCode, $state, $city);
 						$stmt->execute();
 						$stmt->close();
 						$stmt = $conn->prepare("INSERT INTO orders(userEmail) VALUES (?)");
@@ -153,11 +160,14 @@
 					<label>Address:</label> <input type="text" name="address" value="<?php echo $address;?>">
 					<span class="error">* <?php echo $addressErr;?></span>
 					<br>
-					<label>Zipcode:</label> <input type="text" name="zipCode" value="<?php echo $zipCode;?>">
-					<span class="error">* <?php echo $zipCodeErr;?></span>
+					<label>City:</label> <input type="text" name="city" value="<?php echo $city;?>">
+					<span class="error">* <?php echo $addressErr;?></span>
 					<br>
 					<label>State Abrv:</label> <input type="text" name="state" value="<?php echo $state;?>">
 					<span class="error">* <?php echo $stateErr;?></span>
+					<br>
+					<label>Zipcode:</label> <input type="text" name="zipCode" value="<?php echo $zipCode;?>">
+					<span class="error">* <?php echo $zipCodeErr;?></span>
 					<br>
 					<div class="buttons">
 						<input type="submit" value="Submit">

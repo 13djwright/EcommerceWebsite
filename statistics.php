@@ -16,6 +16,9 @@
 				$liEmail = $_SESSION['email'];
 				$liName = $_SESSION['firstName'];
 				$liRole = $_SESSION['role'];
+				if($liRole != "MANAGER") {
+					header("Location: ../project/");
+				}
 				include_once('./config.php');
 				$stmt = $conn->prepare("select count(*) from orderDetails D where D.orderID=(select max(id) from orders O where O.userEmail=?)");
 				$stmt->bind_param("s", $liEmail);
@@ -181,7 +184,7 @@
 					}
 					else{
 						//if not manager, then redirect to index.php
-						header("Location: http://cs.uky.edu/~bgst223/project/index.php");
+						header("Location: ../project/");
 					}
 
 				

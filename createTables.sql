@@ -5,9 +5,9 @@ lastName VARCHAR(30) NOT NULL,
 password VARCHAR(30) NOT NULL,
 email VARCHAR(40) NOT NULL PRIMARY KEY,
 address VARCHAR(100) NOT NULL,
-zipCode INTEGER(5) NOT NULL,
+city VARCHAR(30) NOT NULL,
 state VARCHAR(2) NOT NULL,
-loggedIn BOOLEAN NOT NULL DEFAULT 0,
+zipCode INTEGER(5) NOT NULL,
 dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -40,8 +40,8 @@ FOREIGN KEY (orderID) REFERENCES orders(id),
 FOREIGN KEY (productID) REFERENCES products(id)
 );
 
-INSERT IGNORE INTO users(role, firstName, lastName, password, email, address, zipCode, state) VALUES 
-("MANAGER", "Devin", "Wright", "cspass", "13djwright@gmail.com", "3500 Beaver Place Road", 40503, "KY"),
-("STAFF", "Brandon", "Stockwell", "cspass", "bgs1292@gmail.com", "Tates Creek Road", 40502, "KY");
+INSERT IGNORE INTO users(role, firstName, lastName, password, email, address, zipCode, state, city) VALUES 
+("MANAGER", "Devin", "Wright", "cspass", "13djwright@gmail.com", "3500 Beaver Place Road", 40503, "KY", "Lexington"),
+("STAFF", "Brandon", "Stockwell", "cspass", "bgs1292@gmail.com", "Tates Creek Road", 40502, "KY", "Lexington");
 
 INSERT INTO orders(userEmail) VALUES ("13djwright@gmail.com"), ("bgs1292@gmail.com");

@@ -1,7 +1,7 @@
 <?php 
 	session_start();
 	if(!isset($_SESSION['email']) || empty($_SESSION['email'])) {
-		header("Location:./orders.php");
+		header("Location:../project/");
 	}
 	else{
 		include_once("./config.php"); 
@@ -12,6 +12,11 @@
 		$stmt->bind_param("i", $orderID);
 		$stmt->execute();
 		$stmt->bind_result($total);
+		$stmt->fetch();
+		$stmt->close();
+		$stmt = $conn->prepare("update products P, orderDetails D set P.quantity=P.quantity-D.quantity where P.id=D.productID and D.orderID=?");
+		$stmt->bind_param("i", $orderID);
+		$stmt->execute();
 		$stmt->fetch();
 		$stmt->close();
 		echo "email: {$email} placed an orderNum {$orderID} at {$date}.";

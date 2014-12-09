@@ -34,7 +34,7 @@
 						echo "<a href='./previous_orders.php'>Orders</a>";
 						if($liRole == "STAFF" || $liRole == "MANAGER") {
 							echo "<a href='./products.php'>Product Details</a>";
-							echo "<a href='./orders.php'>Orders Details</a>";
+							echo "<a href='./orders.php'>Order Details</a>";
 						}
 						if($liRole == "MANAGER") {
 							echo "<a href='./statistics.php'>Statistics</a>";
@@ -93,13 +93,21 @@
 								echo "<form method='post' action='cart_update.php'>";
 								echo "<div class='product_name'>{$name}</div>";
 								echo "<div class='product_price'>price: \${$price}</div>";
-								echo "<div class='product_quantity'>stock: {$quantity}</div>";
-								//change this to a select based on stock. Remember to put a cap on it.
-								echo "<select class='quantity_text' name='product_quantity'>";
-								for($i = 1; $i <= $quantity && $i <= 10; $i+=1) {
-									echo "<option value='{$i}'>{$i}</option>";
+								
+								echo "<div class='product_quantity'>";
+								if($quantity > 0) {
+									echo "stock: {$quantity}";
+									//change this to a select based on stock. Remember to put a cap on it.
+									echo "<select class='quantity_text' name='product_quantity'>";
+									for($i = 1; $i <= $quantity && $i <= 10; $i+=1) {
+										echo "<option value='{$i}'>{$i}</option>";
+									}
+									echo "</select>";
 								}
-								echo "</select>";
+								else {
+									echo "Out of stock";
+								}
+								echo "</div>";
 								echo "<input type='hidden' value='{$id}' name='product_id'>";
 								if($liEmail) {
 									echo "<input type='submit' class='add_product' value='Add to Basket'>";
