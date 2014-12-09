@@ -53,7 +53,7 @@
 			<div id="statcalc">
 				<?php
 				//Statistic calculation -- Brandon
-					$stmt = $conn->prepare("SELECT P.name,O.dateOrdered,P.price FROM orders O,products P WHERE O.id = P.id");
+					$stmt = $conn->prepare("SELECT P.name,O.dateOrdered,P.price FROM orders O,orderDetails D,products P WHERE D.productID = P.id AND D.orderID = O.id");
 					$stmt->execute();
 					$stmt->bind_result($prodName,$dateOrdered,$price); //coud price become an array of the product prices that result
 							// in all the prices for this instance?
