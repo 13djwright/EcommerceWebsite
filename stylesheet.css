@@ -1,3 +1,21 @@
+#inline {
+	position: relative;
+	margin-top: 30px;
+}
+
+#inline h3 {
+	margin: 0px 0px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+#inline button {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
 .to-upper {
 	text-transform: uppercase;
 }
