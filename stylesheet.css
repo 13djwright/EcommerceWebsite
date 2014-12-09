@@ -1,3 +1,14 @@
+.previous-order-item {
+	display: flex;
+	justify-content: space-around;
+	margin-bottom: 3px;
+	border-bottom: 1px solid black;
+}
+
+.previous-order-labal {
+	display: inline-block;
+}
+
 .order {
 	border: 1px solid black;
 	margin-top: 10px;

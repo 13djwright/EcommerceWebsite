@@ -89,9 +89,20 @@
 						$istmt->bind_param("i",$orderIDs[$i]);
 						$istmt->execute();
 						$istmt->bind_result($pName, $pPrice, $pQuantity);
+						echo "<div class='previous_orders'>";
+						echo "<div class='product'>";
+						echo "<span class='product_name'>Name</span>";
+						echo "<span class='product_quantity'>Quantity</span>";
+						echo "<span class='product_price'>Price</span>";
+						echo "</div>";	
 						while($istmt->fetch()) {
-							echo "<p>name: {$pName}\tquantity: {$pQuantity}\tprice: {$pPrice}</p>";
+							echo "<div class='product'>";
+							echo "<span class='product_name'>{$pName}</span>";
+							echo "<span class='product_quantity'>{$pQuantity}</span>";
+							echo "<span class='product_price'>{$pPrice}</span>";
+							echo "</div>";
 						}
+						echo "</div>";
 						echo "</div>";
 					}
 				?>    
