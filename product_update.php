@@ -14,12 +14,17 @@
 		$productQuantity = $_POST["product_quantity"];
 		$productName = $_POST['product_name'];
 		$productPrice = $_POST['product_price'];
-		echo $productPrice . "\t" . $productQuantity . "\t" . $productName;
-		$stmt = $conn->prepare("update products P set P.price = ?, P.quantity = ?, P.name = ? where P.id=?");
+		$promoFrom = $_POST['promo_from'];
+		$promoTo = $_POST['promo_to'];
+		$promoDiscount = $_POST['promo_discount'];
+		$promoFrom = $promoFrom ?: NULL;
+		$promoTo = $promoTo ?: NULL;
+		echo $productPrice . "\t" . $productQuantity . "\t" . $productName . "\t" . $promoFrom . "\t" . $promoTo;
+		$stmt = $conn->prepare("update products P set P.price = ?, P.quantity = ?, P.name = ?, P.promoFrom = ?, P.promoTo = ?, P.promoDiscount = ? where P.id=?");
 		if(!$stmt) {
 			echo "prep fail";
 		}
-		if(!$stmt->bind_param("disi", $productPrice, $productQuantity, $productName, $productID)) {
+		if(!$stmt->bind_param("disssii", $productPrice, $productQuantity, $productName, $promoFrom, $promoTo,$promoDiscount, $productID)) {
 			echo "bind fail";
 		}
 		if(!$stmt->execute()) {

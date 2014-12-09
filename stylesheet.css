@@ -57,8 +57,8 @@ a.active {
 
 #main {
 	margin: 0 auto;
-	min-width: 800px;
-	width: 800px;
+	min-width: 1100px;
+	width: 1100px;
 	background-color: #ccc;
 	padding: 10px;
 	min-height: 500px;
@@ -95,6 +95,10 @@ a.active {
 .product .product_quantity {
 	float: left;
 	width: 100px;
+}
+
+.product form label {
+	margin-left: 5px;
 }
 
 .register {

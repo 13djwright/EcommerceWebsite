@@ -96,25 +96,26 @@
 							}
 							$_SESSION['search'] = $search;
 							$param = "%{$search}%";
-							$stmt = $conn->prepare("SELECT id,name,price,quantity FROM products WHERE name LIKE ? ORDER BY {$sort_param}");
+							$stmt = $conn->prepare("SELECT id, name, price, quantity, promoFrom, promoTo, promoDiscount FROM products WHERE name LIKE ? ORDER BY {$sort_param}");
 							$stmt->bind_param("s", $param);
 							$stmt->execute();
 							$stmt->store_result();
-							$stmt->bind_result($id,$name,$price,$quantity);
+							$stmt->bind_result($id,$name,$price,$quantity, $promoFrom, $promoTo, $promoDiscount);
 							echo "<span>Results: {$stmt->num_rows()}</span>";
 							$alert_message = "\"You must be logged in to add items to your cart.\"";
 							while ($stmt->fetch()) {
+								$promoTo = $promoTo ?: "";
+								$promoFrom = $promoFrom ?: "";
 								echo "<div class='product'>";
 								echo "<form method='post' action='product_update.php'>";
 								echo "<input class='product_name' style='width: 150px' type='text' value='{$name}' name='product_name'/>";
 								echo "<label style='float:left'>price: $</label><input style='float: left; width: 60px;' name='product_price' type='number' value='{$price}' min='0' max='200' step='0.01'>";
 								echo "<label style='float: left'>stock: </label><input style='float: left;' name='product_quantity' value='{$quantity}' type='number' min='0' step='1' max='100'>";		
-								echo "<label style='float: left;'>promoFrom</label><input style='float: left;' name='promo_from' type='date' value=''>";
-								echo "<label style='float: left;'>promoTo</label><input style='float: left;' name='promo_from' type='date' value=''>";
+								echo "<label style='float: left;'>promoFrom: </label><input style='float: left;' name='promo_from' type='date' value='{$promoFrom}'>";
+								echo "<label style='float: left;'>promoTo: </label><input style='float: left;' name='promo_to' type='date' value='{$promoTo}'>";
+								echo "<label style='float: left;'>Discount: </label><input style='float: left;' name='promo_discount' type='number' min='0' max='100' value='{$promoDiscount}' step='1'>";
 								echo "<input type='hidden' value='{$id}' name='product_id'>";
-								if($liEmail) {
-									echo "<input type='submit' style='float:left;' value='Update'>";
-								}
+								echo "<input type='submit' style='float:left;' value='Update'>";
 								echo "</form>";
 								echo "</div>";
 							}

@@ -81,19 +81,27 @@
 							}
 							$_SESSION['search'] = $search;
 							$param = "%{$search}%";
-							$stmt = $conn->prepare("SELECT id,name,price,quantity FROM products WHERE name LIKE ? ORDER BY {$sort_param}");
+							$stmt = $conn->prepare("SELECT id,name,price,quantity,promoFrom,promoTo,promoDiscount FROM products WHERE name LIKE ? ORDER BY {$sort_param}");
 							$stmt->bind_param("s", $param);
 							$stmt->execute();
 							$stmt->store_result();
-							$stmt->bind_result($id,$name,$price,$quantity);
+							$stmt->bind_result($id,$name,$price,$quantity, $promoFrom, $promoTo, $promoDiscount);
 							echo "<span>Results: {$stmt->num_rows()}</span>";
 							$alert_message = "\"You must be logged in to add items to your cart.\"";
 							while ($stmt->fetch()) {
 								echo "<div class='product'>";
 								echo "<form method='post' action='cart_update.php'>";
 								echo "<div class='product_name'>{$name}</div>";
-								echo "<div class='product_price'>price: \${$price}</div>";
-								
+								$today = date("Y-m-d");
+								if($promoTo && $promoFrom) {
+									if($today >= $promoFrom && $today <= $promoTo) {
+										$discountPrice = round($price - ($price*($promoDiscount/100)),2);
+										echo "<div class='product_price'>Price: <del>\${$price}</del> <ins>{$discountPrice} (%{$promoDiscount} off)</ins></div>";
+									}
+								}
+								else {
+									echo "<div class='product_price'>Price: \${$price}</div>";
+								}
 								echo "<div class='product_quantity'>";
 								if($quantity > 0) {
 									echo "stock: {$quantity}";
