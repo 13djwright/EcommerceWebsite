@@ -1,12 +1,11 @@
-.previous-order-item {
-	display: flex;
-	justify-content: space-around;
-	margin-bottom: 3px;
-	border-bottom: 1px solid black;
+.to-upper {
+	text-transform: uppercase;
 }
 
-.previous-order-labal {
-	display: inline-block;
+.order form input[type='submit'] {
+	position: absolute;
+	bottom: 0;
+	left: 0;
 }
 
 .order {
@@ -14,7 +13,7 @@
 	margin-top: 10px;
 	margin-bottom: 10px;
 	padding-bottom: 10px;
-	
+	position: relative;	
 }
 
 .orderHeader {
