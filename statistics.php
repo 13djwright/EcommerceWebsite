@@ -16,9 +16,6 @@
 				$liEmail = $_SESSION['email'];
 				$liName = $_SESSION['firstName'];
 				$liRole = $_SESSION['role'];
-				if($liRole != "MANAGER") {
-					header("Location: ../project/");
-				}
 				include_once('./config.php');
 				$stmt = $conn->prepare("select count(*) from orderDetails D where D.orderID=(select max(id) from orders O where O.userEmail=?)");
 				$stmt->bind_param("s", $liEmail);
@@ -56,9 +53,9 @@
 			<div id="statcalc">
 				<?php
 				//Statistic calculation -- Brandon
-					$stmt = $conn->prepare("SELECT P.name,O.dateOrdered,P.price FROM orders O,orderDetails D,products P WHERE D.productID = P.id AND D.orderID = O.id");
+					$stmt = $conn->prepare("SELECT P.name,O.dateOrdered,P.price,D.quantity FROM orders O,orderDetails D,products P WHERE D.productID = P.id AND D.orderID = O.id");
 					$stmt->execute();
-					$stmt->bind_result($prodName,$dateOrdered,$price); //coud price become an array of the product prices that result
+					$stmt->bind_result($prodName,$dateOrdered,$price,$quantity); //coud price become an array of the product prices that result
 							// in all the prices for this instance?
 					//if so, use loo to iterate through all prices in the table
 					$lastWeek = 0;
@@ -107,14 +104,14 @@
 								//last month
 								$lastMonth++;
 								$lastYear++;
-								$monthRevenue += $price;
-								$annualRevenue +=$price;
+								$monthRevenue += $price * $quantity;
+								$annualRevenue += $price * $quantity;
 
 							}
 							if($diff_in_days > 30 && $diff_in_days <= 365){
 								//last year
 								$lastYear++;
-								$annualRevenue += $price;
+								$annualRevenue += $price * $quantity;
 
 							}
 							if($diff_in_days <= 7){
@@ -122,22 +119,29 @@
 								$lastWeek++;
 								$lastYear++;
 								$lastMonth++;
-								$weekRevenue += $price;
-								$monthRevenue += $price;
-								$annualRevenue += $price;
+								$weekRevenue += $price * $quantity;
+								$monthRevenue += $price * $quantity;
+								$annualRevenue += $price * $quantity;
 							}
 							$total++;
 
 							$prodProfit = $total * $price;
 							$prodProfit = number_format($prodProfit, 2, '.', '');
 							
-							$grossprofit += $prodProfit;
-							$grossprofit = number_format($grossprofit, 2, '.', '');
 
 							//show products sold in past week, month, and year
 							//|product name|past week  |past month  |past year    |
 							//|product 1   |    ...    | ...        | ...         |
 							//|product 2   |    ...    | ...        | ...         |
+
+							$lastWeek = $lastWeek * $quantity;
+							$lastMonth = $lastMonth * $quantity;
+							$lastYear = $lastYear * $quantity;
+							$total = $total * $quantity;
+							$prodProfit = $prodProfit * $quantity;
+
+							$grossprofit += $prodProfit;
+							$grossprofit = number_format($grossprofit, 2, '.', '');
 
 							echo "<div class='product_name'>$prodName</div>";
 							echo "<div class='week'>$lastWeek</div>";
@@ -160,6 +164,7 @@
 							//most popular
 							//least popular
 						}
+						//$grossprofit = $grossprofit * $allProductsTotal;
 						$weekRevenue = number_format($weekRevenue, 2, '.', '');
 						$monthRevenue = number_format($monthRevenue, 2, '.', '');
 						$annualRevenue = number_format($annualRevenue, 2, '.', '');
@@ -184,7 +189,7 @@
 					}
 					else{
 						//if not manager, then redirect to index.php
-						header("Location: ../project/");
+						header("Location: http://cs.uky.edu/~bgst223/project/index.php");
 					}
 
 				
