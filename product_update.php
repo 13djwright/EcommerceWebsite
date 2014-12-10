@@ -20,7 +20,7 @@
 		$promoFrom = $promoFrom ?: NULL;
 		$promoTo = $promoTo ?: NULL;
 		echo $productPrice . "\t" . $productQuantity . "\t" . $productName . "\t" . $promoFrom . "\t" . $promoTo;
-		$stmt = $conn->prepare("update products P set P.price = ?, P.quantity = ?, P.name = ?, P.promoFrom = ?, P.promoTo = ?, P.promoDiscount = ? where P.id=?");
+		$stmt = $conn->prepare("update products405 P set P.price = ?, P.quantity = ?, P.name = ?, P.promoFrom = ?, P.promoTo = ?, P.promoDiscount = ? where P.id=?");
 		if(!$stmt) {
 			echo "prep fail";
 		}
