@@ -96,7 +96,7 @@
 							}
 							$_SESSION['search'] = $search;
 							$param = "%{$search}%";
-							$stmt = $conn->prepare("SELECT id, name, price, quantity, promoFrom, promoTo, promoDiscount FROM products WHERE name LIKE ? ORDER BY {$sort_param}");
+							$stmt = $conn->prepare("SELECT id, name, price, quantity, promoFrom, promoTo, promoDiscount FROM products405 WHERE name LIKE ? ORDER BY {$sort_param}");
 							$stmt->bind_param("s", $param);
 							$stmt->execute();
 							$stmt->store_result();
