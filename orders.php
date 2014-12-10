@@ -17,7 +17,7 @@
 				$liName = $_SESSION['firstName'];
 				$liRole = $_SESSION['role'];
 				include_once('./config.php');
-				$stmt = $conn->prepare("select count(*) from orderDetails D where D.orderID=(select max(id) from orders O where O.userEmail=?)");
+				$stmt = $conn->prepare("select count(*) from orderDetails405 D where D.orderID=(select max(id) from orders405 O where O.userEmail=?)");
 				$stmt->bind_param("s", $liEmail);
 				$stmt->execute();
 				$stmt->bind_result($items_in_basket);
@@ -61,7 +61,7 @@
 					//$stmt->bind_results($firstName, $lastName, $email, $address, $zipCode, $state, 
 					$orderIDs = array();
 					//order by could go here for oldest/newest
-					$stmt = $conn->prepare("select O.id from orders O where O.dateOrdered is not null and O.dateShipped is null");
+					$stmt = $conn->prepare("select O.id from orders405 O where O.dateOrdered is not null and O.dateShipped is null");
 					$stmt->execute();
 					$orderIDtemp = NULL;
 					$stmt->bind_result($orderIDtemp);
@@ -70,11 +70,12 @@
 					}
 					$stmt->close();
 					for($i=0; $i<count($orderIDs); $i++) {
+						echo "test";
 						echo "<div class='order'>";
 							echo "<form action='process_order.php' method='post'>";
 								//display user info
 								echo "<div class='orderHeader'>";
-									$stmt = $conn->prepare("select U.firstName, U.lastName, U.email, U.address, U.zipCode, U.state, U.city, O.dateOrdered from users U, orders O where U.email=O.userEmail and O.id=?");
+									$stmt = $conn->prepare("select U.firstName, U.lastName, U.email, U.address, U.zipCode, U.state, U.city, O.dateOrdered from users405 U, orders405 O where U.email=O.userEmail and O.id=?");
 									$stmt->bind_param("i",$orderIDs[$i]);
 									$stmt->execute();
 									$stmt->bind_result($firstName, $lastName, $email, $address, $zipCode, $state, $city, $dateOrdered);
@@ -99,7 +100,7 @@
 								echo "<span class='product_quantity'>Quantity</span>";
 								echo "<span class='product_price'>Price</span>";
 								echo "</div>";	
-								$stmt = $conn->prepare("select P.name, D.quantity, P.price from products P join orderDetails D on D.productID=P.id where D.orderID=?");
+								$stmt = $conn->prepare("select P.name, D.quantity, P.price from products405 P join orderDetails405 D on D.productID=P.id where D.orderID=?");
 								$stmt->bind_param("i",$orderIDs[$i]);
 								$stmt->execute();
 								$stmt->bind_result($pName, $pQuantity, $pPrice);

@@ -18,7 +18,7 @@
 				$liName = $_SESSION['firstName'];
 				$liRole = $_SESSION['role'];
 				include_once('config.php');
-				$stmt = $conn->prepare("select count(*) from orderDetails D where D.orderID=(select max(id) from orders O where O.userEmail=?)");
+				$stmt = $conn->prepare("select count(*) from orderDetails405 D where D.orderID=(select max(id) from orders405 O where O.userEmail=?)");
 				$stmt->bind_param("s", $liEmail);
 				$stmt->execute();
 				$stmt->bind_result($items_in_basket);

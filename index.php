@@ -23,7 +23,7 @@
 				<?php
 				   include_once('./config.php');
 					if($liEmail){
-						$stmt = $conn->prepare("select count(*) from orderDetails D where D.orderID=(select max(id) from orders O where O.userEmail=?)");
+						$stmt = $conn->prepare("select count(*) from orderDetails405 D where D.orderID=(select max(id) from orders405 O where O.userEmail=?)");
 						$stmt->bind_param("s", $liEmail);
 						$stmt->execute();
 						$stmt->bind_result($items_in_basket);
@@ -34,7 +34,7 @@
 						echo "<a href='./previous_orders.php'>Orders</a>";
 						if($liRole == "STAFF" || $liRole == "MANAGER") {
 							echo "<a href='./products.php'>Product Details</a>";
-							echo "<a href='./orders.php'>Order Details</a>";
+							echo "<a href='./orders.php'>Orders Details</a>";
 						}
 						if($liRole == "MANAGER") {
 							echo "<a href='./statistics.php'>Statistics</a>";
@@ -81,7 +81,7 @@
 							}
 							$_SESSION['search'] = $search;
 							$param = "%{$search}%";
-							$stmt = $conn->prepare("SELECT id,name,price,quantity FROM products WHERE name LIKE ? ORDER BY {$sort_param}");
+							$stmt = $conn->prepare("SELECT id,name,price,quantity FROM products405 WHERE name LIKE ? ORDER BY {$sort_param}");
 							$stmt->bind_param("s", $param);
 							$stmt->execute();
 							$stmt->store_result();
@@ -90,24 +90,16 @@
 							$alert_message = "\"You must be logged in to add items to your cart.\"";
 							while ($stmt->fetch()) {
 								echo "<div class='product'>";
-								echo "<form method='post' action='cart_update.php'>";
+								echo "<form method='post' action='cart_update.php' target='hidden_form'>";
 								echo "<div class='product_name'>{$name}</div>";
 								echo "<div class='product_price'>price: \${$price}</div>";
-								
-								echo "<div class='product_quantity'>";
-								if($quantity > 0) {
-									echo "stock: {$quantity}";
-									//change this to a select based on stock. Remember to put a cap on it.
-									echo "<select class='quantity_text' name='product_quantity'>";
-									for($i = 1; $i <= $quantity && $i <= 10; $i+=1) {
-										echo "<option value='{$i}'>{$i}</option>";
-									}
-									echo "</select>";
+								echo "<div class='product_quantity'>stock: {$quantity}</div>";
+								//change this to a select based on stock. Remember to put a cap on it.
+								echo "<select class='quantity_text' name='product_quantity'>";
+								for($i = 1; $i <= $quantity && $i <= 10; $i+=1) {
+									echo "<option value='{$i}'>{$i}</option>";
 								}
-								else {
-									echo "Out of stock";
-								}
-								echo "</div>";
+								echo "</select>";
 								echo "<input type='hidden' value='{$id}' name='product_id'>";
 								if($liEmail) {
 									echo "<input type='submit' class='add_product' value='Add to Basket'>";
@@ -120,6 +112,7 @@
 								echo "</div>";
 							}
 							$stmt->close();
+							echo "<iframe style='display:none' name='hidden_form'></iframe>";
 						}
 				   }
 

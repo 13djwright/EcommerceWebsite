@@ -16,7 +16,7 @@
 			$liName = $_SESSION['firstName'];
 			$liRole = $_SESSION['role'];
 			include_once("./config.php");
-			$stmt = $conn->prepare("select count(*) from orderDetails D where D.orderID=(select max(id) from orders O where O.userEmail=?)");
+			$stmt = $conn->prepare("select count(*) from orderDetails405 D where D.orderID=(select max(id) from orders405 O where O.userEmail=?)");
 			$stmt->bind_param("s", $liEmail);
 			$stmt->execute();
 			$stmt->bind_result($items_in_basket);
@@ -48,20 +48,20 @@
 				<h3>Basket</h3>
 				<hr>
 				<?php
-					$bstmt = $conn->prepare("SELECT MAX(id) FROM orders WHERE userEmail=?");
+					$bstmt = $conn->prepare("SELECT MAX(id) FROM orders405 WHERE userEmail=?");
 					$bstmt->bind_param("s",$liEmail);
 					$bstmt->execute();
 					$bstmt->bind_result($result);
 					$bstmt->fetch();
 					$bstmt->close();
-					$stmt = $conn->prepare("select SUM(P.price*D.quantity) from orderDetails D inner join products P on P.id=D.productID where D.orderID=?");
+					$stmt = $conn->prepare("select SUM(P.price*D.quantity) from orderDetails405 D inner join products405 P on P.id=D.productID where D.orderID=?");
 					$stmt->bind_param("s", $result);
 					$stmt->execute();
 					$stmt->bind_result($total);
 					$stmt->fetch();
 					$stmt->close();
 					if($result) {
-						$stmt = $conn->prepare("select D.id, P.name, P.price, D.quantity from orderDetails D inner join products P on P.id=D.productID where D.orderID=?");
+						$stmt = $conn->prepare("select D.id, P.name, P.price, D.quantity from orderDetails405 D inner join products405 P on P.id=D.productID where D.orderID=?");
 						$stmt->bind_param("i",$result);
 						$stmt->execute();
 						$stmt->bind_result($orderDetailsID,$pname,$pprice,$pquantity);

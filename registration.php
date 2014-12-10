@@ -7,9 +7,9 @@
 		<?php
 			//TODO: check that all data is here check primary key is not taken insert the data into database
 
-			$addressErr = $firstNameErr = $lastNameErr = $emailErr = $passwordErr = $repasswordErr = $zipCodeErr = $stateErr = $cityErr = "";
+			$addressErr = $firstNameErr = $lastNameErr = $emailErr = $passwordErr = $repasswordErr = $zipCodeErr = $stateErr = "";
 			include_once("./config.php");
-			$address = $firstName = $lastName = $email = $password = $repassword = $zipCode = $state = $city = "";
+			$address = $firstName = $lastName = $email = $password = $repassword = $zipCode = $state = "";
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			//check that each variable is not empty
 				if (empty($_POST["firstName"])) {
@@ -80,12 +80,6 @@
 				else {
 					$address = test_input($_POST["address"]);
 				}
-				if (empty($_POST["city"])) {
-					$addressErr = "City is required";
-				}
-				else {
-					$address = test_input($_POST["city"]);
-				}
 
 				//Check to make sure there are no errors, 
 				if(
@@ -96,10 +90,9 @@
 				$repasswordErr === "" && 
 				$addressErr === "" && 
 				$zipCodeErr === "" && 
-				$stateErr === "" &&
-				$cityErr === "") {
+				$stateErr === "") {
 						
-					$stmt = $conn->prepare("SELECT email FROM users WHERE email=?");
+					$stmt = $conn->prepare("SELECT email FROM users405 WHERE email=?");
 					$stmt->bind_param("s",$email);
 					$stmt->execute();
 					$stmt->bind_result($result);
@@ -107,11 +100,11 @@
 					$stmt->close();
 					if(!$result) {
 						//new email so take all of the data and insert into users table
-						$stmt = $conn->prepare("INSERT INTO users(firstName, lastName, email, password, address, zipCode, state, city) VALUES (?,?,?,?,?,?,?,?)");
-						$stmt->bind_param("sssssis", $firstName, $lastName, $email, $password, $address, $zipCode, $state, $city);
+						$stmt = $conn->prepare("INSERT INTO users405(firstName, lastName, email, password, address, zipCode, state) VALUES (?,?,?,?,?,?,?)");
+						$stmt->bind_param("sssssis", $firstName, $lastName, $email, $password, $address, $zipCode, $state);
 						$stmt->execute();
 						$stmt->close();
-						$stmt = $conn->prepare("INSERT INTO orders(userEmail) VALUES (?)");
+						$stmt = $conn->prepare("INSERT INTO orders405(userEmail) VALUES (?)");
 						$stmt->bind_param("s",$email);
 						$stmt->execute();
 						$stmt->close();
@@ -137,46 +130,41 @@
 
 
 		?>
-		<h1 id='header'>S&W Games and Toys</h1>
-		<div id="main">
-			<p><span class="error">* required field</span></p>
-			<div class="register">
-				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-					<label>First name: </label><input type="text" name="firstName" value="<?php echo $firstName;?>">
-					<span class="error">* <?php echo $firstNameErr;?></span>
-					<br>
-					<label>Last name:</label> <input type="text" name="lastName" value="<?php echo $lastName;?>">
-					<span class="error">* <?php echo $lastNameErr;?></span>
-					<br>
-					<label>Email:</label> <input type="text" name="email" value="<?php echo $email;?>">
-					<span class="error">* <?php echo $emailErr;?></span>
-					<br>
-					<label>Password:</label> <input type="password" name="password">
-					<span class="error">* <?php echo $passwordErr;?></span>
-					<br>
-					<label>Re-enter:</label> <input type="password" name="repassword">
-					<span class="error">* <?php echo $repasswordErr;?></span>
-					<br>
-					<label>Address:</label> <input type="text" name="address" value="<?php echo $address;?>">
-					<span class="error">* <?php echo $addressErr;?></span>
-					<br>
-					<label>City:</label> <input type="text" name="city" value="<?php echo $city;?>">
-					<span class="error">* <?php echo $addressErr;?></span>
-					<br>
-					<label>State Abrv:</label> <input type="text" name="state" value="<?php echo $state;?>">
-					<span class="error">* <?php echo $stateErr;?></span>
-					<br>
-					<label>Zipcode:</label> <input type="text" name="zipCode" value="<?php echo $zipCode;?>">
-					<span class="error">* <?php echo $zipCodeErr;?></span>
-					<br>
-					<div class="buttons">
-						<input type="submit" value="Submit">
-						<a href="../project/">
-							<input type="button" value="Cancel">
-						</a>
-					</div>
-				</form>
-			</div>
+
+		<p><span class="error">* required field</span></p>
+		<div class="register">
+			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+				<label>First name: </label><input type="text" name="firstName" value="<?php echo $firstName;?>">
+				<span class="error">* <?php echo $firstNameErr;?></span>
+				<br>
+				<label>Last name:</label> <input type="text" name="lastName" value="<?php echo $lastName;?>">
+				<span class="error">* <?php echo $lastNameErr;?></span>
+				<br>
+				<label>Email:</label> <input type="text" name="email" value="<?php echo $email;?>">
+				<span class="error">* <?php echo $emailErr;?></span>
+				<br>
+				<label>Password:</label> <input type="password" name="password">
+				<span class="error">* <?php echo $passwordErr;?></span>
+				<br>
+				<label>Re-enter:</label> <input type="password" name="repassword">
+				<span class="error">* <?php echo $repasswordErr;?></span>
+				<br>
+				<label>Address:</label> <input type="text" name="address" value="<?php echo $address;?>">
+				<span class="error">* <?php echo $addressErr;?></span>
+				<br>
+				<label>Zipcode:</label> <input type="text" name="zipCode" value="<?php echo $zipCode;?>">
+				<span class="error">* <?php echo $zipCodeErr;?></span>
+				<br>
+				<label>State Abrv:</label> <input type="text" name="state" value="<?php echo $state;?>">
+				<span class="error">* <?php echo $stateErr;?></span>
+				<br>
+				<div class="buttons">
+					<input type="submit" value="Submit">
+					<a href="../project/">
+						<input type="button" value="Cancel">
+					</a>
+				</div>
+			</form>
 		</div>
 	</body>
 </html>

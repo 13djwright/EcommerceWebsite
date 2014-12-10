@@ -7,7 +7,7 @@
 		include_once("./config.php");
 		$orderDetailsID = test_input($_POST['orderDetailsID']);
 		echo "Delete this orderDetailsID: {$orderDetailsID}<br>";
-		$deletestmt = $conn->prepare('DELETE FROM orderDetails WHERE id=?');
+		$deletestmt = $conn->prepare('DELETE FROM orderDetails405 WHERE id=?');
 		$deletestmt->bind_param("i",$orderDetailsID);
 		$deletestmt->execute();
 		$deletestmt->close();
