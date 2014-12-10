@@ -11,7 +11,7 @@
 		$total = $_POST['total'];
 		$date = date("Y-m-d");
 		/*
-		$stmt = $conn->prepare("select SUM(P.price*D.quantity) from orderDetails D inner join products P on P.id=D.productID where D.orderID=?");
+		$stmt = $conn->prepare("select SUM(P.price*D.quantity) from orderDetails405 D inner join products405 P on P.id=D.productID where D.orderID=?");
 		$stmt->bind_param("i", $orderID);
 		$stmt->execute();
 		$stmt->bind_result($total);
@@ -21,7 +21,7 @@
 		
 		//FIXME:	Could have problem here when updating if the value will go negative. make this a transaction
 		//			and if it rollsback inform the the order could not be proccessed and what not
-		$stmt = $conn->prepare("update products P, orderDetails D set P.quantity=P.quantity-D.quantity where P.id=D.productID and D.orderID=?");
+		$stmt = $conn->prepare("update products405 P, orderDetails405 D set P.quantity=P.quantity-D.quantity where P.id=D.productID and D.orderID=?");
 		$stmt->bind_param("i", $orderID);
 		$stmt->execute();
 		$stmt->fetch();

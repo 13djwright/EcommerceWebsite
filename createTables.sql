@@ -5,6 +5,7 @@ lastName VARCHAR(30) NOT NULL,
 password VARCHAR(30) NOT NULL,
 email VARCHAR(40) NOT NULL PRIMARY KEY,
 address VARCHAR(100) NOT NULL,
+city VARCHAR(30) NOT NULL,
 zipCode INTEGER(5) NOT NULL,
 state VARCHAR(2) NOT NULL,
 loggedIn BOOLEAN NOT NULL DEFAULT 0,
@@ -37,8 +38,8 @@ orderID INTEGER(10) NOT NULL,
 productID INTEGER(10) NOT NULL,
 quantity INTEGER(3) NOT NULL,
 price_bought_at DECIMAL(18,2) DEFAULT 0,
-FOREIGN KEY (orderID) REFERENCES orders(id),
-FOREIGN KEY (productID) REFERENCES products(id)
+FOREIGN KEY (orderID) REFERENCES orders405(id),
+FOREIGN KEY (productID) REFERENCES products405(id)
 );
 
 INSERT IGNORE INTO users405(role, firstName, lastName, password, email, address, zipCode, state) VALUES 
