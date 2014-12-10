@@ -1,4 +1,4 @@
-INSERT INTO products(name, price, quantity) VALUES
+INSERT INTO products405(name, price, quantity) VALUES
 ("Forbidden Bridge", 39.70, 17),
 ("Kalah", 65.40, 11),
 ("Dart Wars", 24.10, 3),

@@ -17,7 +17,7 @@
 				$liName = $_SESSION['firstName'];
 				$liRole = $_SESSION['role'];
 				include_once('./config.php');
-				$stmt = $conn->prepare("select count(*) from orderDetails D where D.orderID=(select max(id) from orders O where O.userEmail=?)");
+				$stmt = $conn->prepare("select count(*) from orderDetails405 D where D.orderID=(select max(id) from orders405 O where O.userEmail=?)");
 				$stmt->bind_param("s", $liEmail);
 				$stmt->execute();
 				$stmt->bind_result($items_in_basket);
@@ -53,7 +53,7 @@
 			<div id="statcalc">
 				<?php
 				//Statistic calculation -- Brandon
-					$stmt = $conn->prepare("SELECT P.name,O.dateOrdered,P.price,D.quantity FROM orders O,orderDetails D,products P WHERE D.productID = P.id AND D.orderID = O.id");
+					$stmt = $conn->prepare("SELECT P.name,O.dateOrdered,P.price,D.quantity FROM orders405 O,orderDetails405 D,products405 P WHERE D.productID = P.id AND D.orderID = O.id");
 					$stmt->execute();
 					$stmt->bind_result($prodName,$dateOrdered,$price,$quantity); //coud price become an array of the product prices that result
 							// in all the prices for this instance?

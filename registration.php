@@ -7,7 +7,7 @@
 		<?php
 			$addressErr = $firstNameErr = $lastNameErr = $emailErr = $passwordErr = $repasswordErr = $zipCodeErr = $stateErr = $cityErr = "";
 			include_once("./config.php");
-			$address = $firstName = $lastName = $email = $password = $repassword = $zipCode = $state = $city = "";
+			$address = $firstName = $lastName = $email = $password = $repassword = $zipCode = $state = "";
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			//check that each variable is not empty
 				if (empty($_POST["firstName"])) {
@@ -94,10 +94,9 @@
 				$repasswordErr === "" && 
 				$addressErr === "" && 
 				$zipCodeErr === "" && 
-				$stateErr === "" &&
-				$cityErr === "") {
+				$stateErr === "") {
 						
-					$stmt = $conn->prepare("SELECT email FROM users WHERE email=?");
+					$stmt = $conn->prepare("SELECT email FROM users405 WHERE email=?");
 					$stmt->bind_param("s",$email);
 					$stmt->execute();
 					$stmt->bind_result($result);
@@ -105,11 +104,11 @@
 					$stmt->close();
 					if(!$result) {
 						//new email so take all of the data and insert into users table
-						$stmt = $conn->prepare("INSERT INTO users(firstName, lastName, email, password, address, zipCode, state, city) VALUES (?,?,?,?,?,?,?,?)");
+						$stmt = $conn->prepare("INSERT INTO users405(firstName, lastName, email, password, address, zipCode, state, city) VALUES (?,?,?,?,?,?,?,?)");
 						$stmt->bind_param("sssssiss", $firstName, $lastName, $email, $password, $address, $zipCode, $state, $city);
 						$stmt->execute();
 						$stmt->close();
-						$stmt = $conn->prepare("INSERT INTO orders(userEmail) VALUES (?)");
+						$stmt = $conn->prepare("INSERT INTO orders405(userEmail) VALUES (?)");
 						$stmt->bind_param("s",$email);
 						$stmt->execute();
 						$stmt->close();
