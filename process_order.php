@@ -10,7 +10,7 @@
 		}
 		$orderID = $_POST['orderID'];
 		$date = date("Y-m-d");
-		$stmt = $conn->prepare("update orders O set O.dateShipped=? where O.id=?");
+		$stmt = $conn->prepare("update orders405 O set O.dateShipped=? where O.id=?");
 		$stmt->bind_param("si", $date, $orderID);
 		$stmt->execute();
 		$stmt->fetch();
