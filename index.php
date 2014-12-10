@@ -90,7 +90,7 @@
 							$alert_message = "\"You must be logged in to add items to your cart.\"";
 							while ($stmt->fetch()) {
 								echo "<div class='product'>";
-								echo "<form method='post' action='cart_update.php' target='hidden_form'>";
+								echo "<form method='post' action='cart_update.php'>";
 								echo "<div class='product_name'>{$name}</div>";
 								$today = date("Y-m-d");
 								if($promoTo && $promoFrom) {
@@ -112,7 +112,10 @@
 									}
 									echo "</select>";
 								}
-								echo "</select>";
+								else {
+									echo "stock: Out of Stock";
+								}
+								echo "</div>";
 								echo "<input type='hidden' value='{$id}' name='product_id'>";
 								if($liEmail) {
 									echo "<input type='submit' class='add_product' value='Add to Basket'>";
@@ -125,7 +128,6 @@
 								echo "</div>";
 							}
 							$stmt->close();
-							echo "<iframe style='display:none' name='hidden_form'></iframe>";
 						}
 				   }
 

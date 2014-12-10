@@ -45,18 +45,21 @@
 
 
 		?>
-		<div class="login">
-			<span class="error"><?php echo $error; ?></span>
-			<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
-				<label>Email: </label><input type="email" name="email"value="<?php echo $email;?>">
-				<label>Password: </label><input type="password" name="password">
-				<div class="buttons">
-					<input type="submit" name="submit" value="Login">
-					<a href="../project/">
-						<input type="button" value="Cancel">
-					</a>
-				</div>
-			</form>
+		<h1 id='header'>S&W Login</h1>
+		<div id='main'>
+			<div class="login">
+				<span class="error"><?php echo $error; ?></span>
+				<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+					<label>Email: </label><input type="email" name="email"value="<?php echo $email;?>">
+					<label>Password: </label><input type="password" name="password">
+					<div class="buttons">
+						<input type="submit" name="submit" value="Login">
+						<a href="../project/">
+							<input type="button" value="Cancel">
+						</a>
+					</div>
+				</form>
+			</div>
 		</div>
 	</body>
 </html>

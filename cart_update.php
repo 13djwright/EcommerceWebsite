@@ -34,7 +34,7 @@
 			$addpstmt->execute();
 			$addpstmt->close();
 		}
-		header("Location:./login.php");
+		header("Location:./basket.php");
 	}
 
 
