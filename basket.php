@@ -54,17 +54,17 @@
 					$bstmt->bind_result($result);
 					$bstmt->fetch();
 					$bstmt->close();
-					$stmt = $conn->prepare("select SUM(P.price*D.quantity) from orderDetails D inner join products P on P.id=D.productID where D.orderID=?");
+					$stmt = $conn->prepare("select sum(if (CURDATE() >= P.promoFrom and CURDATE() <= P.promoTo, round((P.price-(P.price*(P.promoDiscount/100)))*D.quantity,2), P.price*D.quantity)) from orderDetails D inner join products P on P.id=D.productID where D.orderID=?");
 					$stmt->bind_param("s", $result);
 					$stmt->execute();
 					$stmt->bind_result($total);
 					$stmt->fetch();
 					$stmt->close();
 					if($result) {
-						$stmt = $conn->prepare("select D.id, P.name, P.price, D.quantity from orderDetails D inner join products P on P.id=D.productID where D.orderID=?");
+						$stmt = $conn->prepare("select D.id, P.name, P.price, D.quantity, P.promoFrom, P.promoTo, P.promoDiscount from orderDetails D inner join products P on P.id=D.productID where D.orderID=?");
 						$stmt->bind_param("i",$result);
 						$stmt->execute();
-						$stmt->bind_result($orderDetailsID,$pname,$pprice,$pquantity);
+						$stmt->bind_result($orderDetailsID,$pname,$pprice,$pquantity, $promofrom, $promoto, $promodiscount);
 						echo "<div class='product'>";
 						echo "<div class='product_name'><strong>Name</strong></div>";
 						echo "<div class='product_price'><strong>Price</strong></div>";
@@ -74,7 +74,16 @@
 							echo "<div class='product'>";
 							echo "<form method='post' action='removeItem.php'>";
 							echo "<div class='product_name'>{$pname}</div>";
-							echo "<div class='product_price'>{$pprice}</div>";
+							$today = date("Y-m-d");
+							if($promofrom && $promoto) {
+								if($today <= $promoto && $today >= $promofrom) {
+									$discountPrice = number_format(round($pprice - ($pprice*($promodiscount/100)),2), 2, '.', '');
+									echo "<div class='product_price'><del>\${$pprice}</del><ins>{$discountPrice}</ins></div>";
+								}
+							}
+							else {
+								echo "<div class='product_price'>\${$pprice}</div>";
+							}
 							echo "<div class='product_quantity'>{$pquantity}</div>";
 							echo "<input type='hidden' value='{$orderDetailsID}' name='orderDetailsID'>";
 							echo "<input type='submit' class='add_product' value='Delete item'>";
@@ -86,6 +95,7 @@
 							echo "<div class='product'>";
 							echo "<div class='product_name'><strong>Total:</strong></div>";
 							echo "<div class='product_price'><strong>{$total}</strong></div>";
+							echo "<input type='hidden' name='total' value='{$total}'>";
 							echo "</div>";
 							echo "<input type='hidden' name='orderID' value={$result}>";
 							echo "<input type='submit' action='' value='Place Order'>";

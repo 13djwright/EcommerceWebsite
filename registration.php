@@ -5,8 +5,6 @@
 	</head>
 	<body>
 		<?php
-			//TODO: check that all data is here check primary key is not taken insert the data into database
-
 			$addressErr = $firstNameErr = $lastNameErr = $emailErr = $passwordErr = $repasswordErr = $zipCodeErr = $stateErr = $cityErr = "";
 			include_once("./config.php");
 			$address = $firstName = $lastName = $email = $password = $repassword = $zipCode = $state = $city = "";
@@ -81,10 +79,10 @@
 					$address = test_input($_POST["address"]);
 				}
 				if (empty($_POST["city"])) {
-					$addressErr = "City is required";
+					$cityErr = "City is required";
 				}
 				else {
-					$address = test_input($_POST["city"]);
+					$city = test_input($_POST["city"]);
 				}
 
 				//Check to make sure there are no errors, 
@@ -108,14 +106,14 @@
 					if(!$result) {
 						//new email so take all of the data and insert into users table
 						$stmt = $conn->prepare("INSERT INTO users(firstName, lastName, email, password, address, zipCode, state, city) VALUES (?,?,?,?,?,?,?,?)");
-						$stmt->bind_param("sssssis", $firstName, $lastName, $email, $password, $address, $zipCode, $state, $city);
+						$stmt->bind_param("sssssiss", $firstName, $lastName, $email, $password, $address, $zipCode, $state, $city);
 						$stmt->execute();
 						$stmt->close();
 						$stmt = $conn->prepare("INSERT INTO orders(userEmail) VALUES (?)");
 						$stmt->bind_param("s",$email);
 						$stmt->execute();
 						$stmt->close();
-						echo ("<script language='javascript'>window.alert('Registration Successful. You will no be directed back to the homepage.');
+						echo ("<script language='javascript'>window.alert('Registration Successful. You will now be directed back to the homepage.');
 						window.location='../project/';
 						</script>"); 
 					}
@@ -161,7 +159,7 @@
 					<span class="error">* <?php echo $addressErr;?></span>
 					<br>
 					<label>City:</label> <input type="text" name="city" value="<?php echo $city;?>">
-					<span class="error">* <?php echo $addressErr;?></span>
+					<span class="error">* <?php echo $cityErr;?></span>
 					<br>
 					<label>State Abrv:</label> <input type="text" name="state" value="<?php echo $state;?>">
 					<span class="error">* <?php echo $stateErr;?></span>

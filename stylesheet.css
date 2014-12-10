@@ -1,3 +1,7 @@
+ins {
+	display: block;
+}
+
 #inline {
 	position: relative;
 	margin-top: 30px;
@@ -89,7 +93,8 @@ a.active {
 
 .product .product_price {
 	float: left;
-	width: 100px;
+	margin-right: 20px;
+	width: 130px;
 }
 
 .product .product_quantity {
