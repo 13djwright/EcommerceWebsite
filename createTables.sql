@@ -28,7 +28,7 @@ dateOrdered DATE DEFAULT NULL,
 dateShipped DATE DEFAULT NULL,
 userEmail VARCHAR(40) NOT NULL,
 total INTEGER(6) DEFAULT 0,
-FOREIGN KEY (userEmail) REFERENCES users(email)
+FOREIGN KEY (userEmail) REFERENCES users405(email)
 );
 
 CREATE TABLE IF NOT EXISTS orderDetails405(
@@ -36,8 +36,8 @@ id INTEGER(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 orderID INTEGER(10) NOT NULL,
 productID INTEGER(10) NOT NULL,
 quantity INTEGER(3) NOT NULL,
-FOREIGN KEY (orderID) REFERENCES orders(id),
-FOREIGN KEY (productID) REFERENCES products(id)
+FOREIGN KEY (orderID) REFERENCES orders405(id),
+FOREIGN KEY (productID) REFERENCES products405(id)
 );
 
 INSERT IGNORE INTO users405(role, firstName, lastName, password, email, address, zipCode, state) VALUES 
