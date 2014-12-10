@@ -1,19 +1,9 @@
-.to-upper {
-	text-transform: uppercase;
-}
-
-.order form input[type='submit'] {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-}
-
 .order {
 	border: 1px solid black;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	padding-bottom: 10px;
-	position: relative;	
+	
 }
 
 .orderHeader {
@@ -36,7 +26,6 @@
 a.active {
 	color: red;
 }
-
 #main {
 	margin: 0 auto;
 	min-width: 800px;
@@ -58,12 +47,10 @@ a.active {
 	width: 45px;
 	margin-right: 5px;
 }
-
 .product .add_product { 
 	float: left;
 	width: 150px;
 }
-
 .product .product_name {
 	width: 300px;
 	float: left;
@@ -87,7 +74,6 @@ a.active {
 .login {
 	min-width: 500px;
 	width: 500px;
-	margin-top: 20px;
 }
 
 .register label, .login label {
@@ -139,7 +125,6 @@ form input[type="text"] {
 #links {
 	display: flex;
 }
-
 .error {
 	color: #FF0000;
 }
@@ -153,32 +138,26 @@ form input[type="text"] {
 	float: left;
 	width: 100px;
 }
-
 #statcalc .month{
 	float: left;
 	width: 100px;
 }
-
 #statcalc .year{
 	float: left;
 	width: 100px;
 }
-
 #statcalc .total{
 	float: left;
-	width: 70px;
+	width: 85px;
 }
-
 #statcalc .all_products{
 	font-weight: bold;
 	float: left;
 }
-
 #statcalc .profit{
 	float: left;
 	width: 100px;
 }
-
 #statcalc .interval_profit{
 	width: 300px;
 	float: left;

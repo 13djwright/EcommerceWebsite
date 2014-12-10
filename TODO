@@ -1,11 +1,18 @@
 BRANDON:
 
 -	*get an actual check out working (payment billing/shipping/etc) (probably a new file)
+	-->payment information
+	-->place order happens here instead of basket.php
+	-->Review order details and able to change quantity ordered.
 
 -	*add option to view account details and change account details (account.php) 
+	-->password change
+	-->Change address
+	-->Change name of account
+	-->email
 
 -	*implement sales statistics under manager ID (statistics.php)
-
+	-->check for correctness when multiple orders present.
 DEVIN:
 
 -	*set up product updates
