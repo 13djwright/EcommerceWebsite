@@ -9,29 +9,29 @@
 		include_once("./config.php");
 		if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-		if(empty($_POST["email"]) || empty($_POST["password"])) {
-			$error = "Email and Password required";
-		}
-		else {
-			$email = test_input($_POST["email"]);
-			$password = test_input($_POST["password"]);
-			$stmt = $conn->prepare("SELECT firstName, email, role FROM users405 WHERE email=? AND password=?");
-			$stmt->bind_param("ss",$email,$password);
-			$stmt->execute();
-			$stmt->bind_result($firstName, $dbemail, $role);
-			$stmt->fetch();
-			$stmt->close();
-			if($firstName && $dbemail) {
-				session_start();
-				$_SESSION['firstName'] = $firstName;
-				$_SESSION['email'] = $dbemail;
-				$_SESSION['role'] = $role;
-				header("Location:../project/");
+			if(empty($_POST["email"]) || empty($_POST["password"])) {
+				$error = "Email and Password required";
 			}
 			else {
-				$error = "Email and/or Password were incorrect. Please retry.";
+				$email = test_input($_POST["email"]);
+				$password = test_input($_POST["password"]);
+				$stmt = $conn->prepare("SELECT firstName, email, role FROM users405 WHERE email=? AND password=?");
+				$stmt->bind_param("ss",$email,$password);
+				$stmt->execute();
+				$stmt->bind_result($firstName, $dbemail, $role);
+				$stmt->fetch();
+				$stmt->close();
+				if($firstName && $dbemail) {
+					session_start();
+					$_SESSION['firstName'] = $firstName;
+					$_SESSION['email'] = $dbemail;
+					$_SESSION['role'] = $role;
+					header("Location:../project/");
+				}
+				else {
+					$error = "Email and/or Password were incorrect. Please retry.";
+				}
 			}
-		}
 
 
 		}

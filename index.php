@@ -34,7 +34,7 @@
 						echo "<a href='./previous_orders.php'>Orders</a>";
 						if($liRole == "STAFF" || $liRole == "MANAGER") {
 							echo "<a href='./products.php'>Product Details</a>";
-							echo "<a href='./orders.php'>Orders Details</a>";
+							echo "<a href='./orders.php'>Order Details</a>";
 						}
 						if($liRole == "MANAGER") {
 							echo "<a href='./statistics.php'>Statistics</a>";
@@ -96,7 +96,7 @@
 								if($promoTo && $promoFrom) {
 									if($today >= $promoFrom && $today <= $promoTo) {
 										$discountPrice = round($price - ($price*($promoDiscount/100)),2);
-										echo "<div class='product_price'>Price: <del>\${$price}</del> <ins>{$discountPrice} (%{$promoDiscount} off)</ins></div>";
+										echo "<div class='product_price'>Price: <del>\${$price}</del> <ins>{$discountPrice} ({$promoDiscount}% off)</ins></div>";
 									}
 								}
 								else {
