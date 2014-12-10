@@ -37,8 +37,8 @@ orderID INTEGER(10) NOT NULL,
 productID INTEGER(10) NOT NULL,
 quantity INTEGER(3) NOT NULL,
 price_bought_at DECIMAL(18,2) DEFAULT 0,
-FOREIGN KEY (orderID) REFERENCES orders(id),
-FOREIGN KEY (productID) REFERENCES products(id)
+FOREIGN KEY (orderID) REFERENCES orders405(id),
+FOREIGN KEY (productID) REFERENCES products405(id)
 );
 
 INSERT IGNORE INTO users405(role, firstName, lastName, password, email, address, zipCode, state) VALUES 
