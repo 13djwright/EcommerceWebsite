@@ -42,8 +42,8 @@ FOREIGN KEY (orderID) REFERENCES orders405(id),
 FOREIGN KEY (productID) REFERENCES products405(id)
 );
 
-INSERT IGNORE INTO users405(role, firstName, lastName, password, email, address, zipCode, state) VALUES 
-("MANAGER", "Devin", "Wright", "cspass", "13djwright@gmail.com", "3500 Beaver Place Road", 40503, "KY"),
-("STAFF", "Brandon", "Stockwell", "cspass", "bgs1292@gmail.com", "Tates Creek Road", 40502, "KY");
+INSERT IGNORE INTO users405(role, firstName, lastName, password, email, address, city, zipCode, state) VALUES 
+("MANAGER", "Devin", "Wright", "cspass", "13djwright@gmail.com", "3500 Beaver Place Road", "Lexington", 40503, "KY"),
+("STAFF", "Brandon", "Stockwell", "cspass", "bgs1292@gmail.com", "Tates Creek Road", "Lexington", 40502, "KY");
 
 INSERT INTO orders405(userEmail) VALUES ("13djwright@gmail.com"), ("bgs1292@gmail.com");
