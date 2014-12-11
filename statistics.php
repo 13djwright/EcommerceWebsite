@@ -53,7 +53,7 @@
 			<div id="statcalc">
 				<?php
 				//Statistic calculation -- Brandon
-					$stmt = $conn->prepare("SELECT P.name,O.dateOrdered,P.price,D.quantity FROM orders405 O,orderDetails405 D,products405 P WHERE D.productID = P.id AND D.orderID = O.id");
+					$stmt = $conn->prepare("SELECT P.name,O.dateOrdered,D.price_bought_at,D.quantity FROM orders405 O,orderDetails405 D,products405 P WHERE D.productID = P.id AND D.orderID = O.id");
 					$stmt->execute();
 					$stmt->bind_result($prodName,$dateOrdered,$price,$quantity); //coud price become an array of the product prices that result
 							// in all the prices for this instance?
@@ -70,17 +70,16 @@
 					if($liRole == 'MANAGER'){
 
 						//render top of table on page
-						echo '<br />';
-						echo "<span>
+						echo '<h3>Statistics</h3>';
+						echo "<hr>";
+						echo "<div class='product'>
 							<div class='product_name'>Product Name</div>
 							<div class='week'>Past Week</div>
 							<div class='month'>Past Month</div>
 							<div class='year'>Past Year</div>
 							<div class='total'>Total # Sold</div>
 							<div class='profit'>Product Revenue</div>
-						</span>";
-						echo '<br />';
-						echo '<br />';
+						</div>";
 						$currentDate = date("Y-m-d");
 						$date_diff = 0;
 						$i = 0;
@@ -177,12 +176,14 @@
 							//$i++;
 						}
 						for($j = 0; $j < $i; $j++){
+							echo "<div class='product'>";
 							echo "<div class='product_name'>$prodlist[$j]</div>";
 							echo "<div class='week'>$prodWeek[$j]</div>";
 							echo "<div class='month'>$prodMonth[$j]</div>";
 							echo "<div class='year'>$prodAnnual[$j]</div>";
 							echo "<div class='total'>$prodTotal[$j]</div>";
 							echo "<div class='profit'>$$product_profit[$j]</div>";
+							echo "</div>";
 						}
 
 						$weekRevenue = number_format($weekRevenue, 2, '.', '');
@@ -195,16 +196,10 @@
 						echo "<div class='year'>$$annualRevenue</div>";
 						echo "<br />";
 						echo "<br />";
-						echo "<br />";
 						echo "<div class='total'>     </div>";
 						echo "<div class='profit'>     </div>";
-						echo '<br />';
-						echo '<br />';
-						echo '<br />';
-						echo '<br />';
-						echo '<br />';
 						echo "<div class='all_products'>Total Products Sold: $allProductsTotal</div>";
-						echo '<br />';
+						echo "<br />";
 						echo "<div class='all_products'>Total Revenue: $$grossprofit</div>";
 						$weekRevenue = 0;
 						$monthRevenue = 0;
@@ -212,7 +207,7 @@
 					}
 					else{
 						//if not manager, then redirect to index.php
-						header("Location: http://cs.uky.edu/~bgst223/project/index.php");
+						header("Location: ../project/");
 					}
 
 				

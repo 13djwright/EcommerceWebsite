@@ -185,7 +185,7 @@ form input[type="text"] {
 }
 #statcalc .total{
 	float: left;
-	width: 85px;
+	width: 100px;
 }
 #statcalc .all_products{
 	font-weight: bold;
