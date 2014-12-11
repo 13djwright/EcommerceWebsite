@@ -46,7 +46,7 @@
 				<h3>Orders</h3>
 				<hr>
 				<?php
-					$stmt = $conn->prepare("select O.id, O.dateOrdered, O.dateShipped, O.total from orders405 O where O.id<>(select max(id) from orders405 O2 where O2.userEmail=?) and O.userEmail=? order by O.dateOrdered, O.id desc");
+					$stmt = $conn->prepare("select O.id, O.dateOrdered, O.dateShipped, O.total from orders405 O where O.id<>(select max(id) from orders405 O2 where O2.userEmail=?) and O.userEmail=? order by O.id desc");
 					$stmt->bind_param("ss",$liEmail,$liEmail);
 					$orderIDtemp = $dateOrderedtemp = $dateShipppedtemp = NULL;
 					$orderIDs = array();

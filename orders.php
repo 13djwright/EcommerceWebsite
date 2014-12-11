@@ -70,7 +70,6 @@
 					}
 					$stmt->close();
 					for($i=0; $i<count($orderIDs); $i++) {
-						echo "test";
 						echo "<div class='order'>";
 							echo "<form action='process_order.php' method='post'>";
 								//display user info

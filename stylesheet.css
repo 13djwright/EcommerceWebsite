@@ -24,16 +24,22 @@ ins {
 }
 
 .order form input[type='submit'] {
-	position: absolute;
-	bottom: 0;
-	left: 0;
+	margin-top: 10px;
+	margin-left: 2px;
+	margin-bottom: 2px;
 }
+
+.order form {
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
 
 .order {
 	border: 1px solid black;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	padding-bottom: 10px;
+	padding-bottom: 0px;
 	
 }
 
@@ -71,6 +77,7 @@ a.active {
 	width: 100%;
 	overflow: hidden;
 	margin-top: 10px;
+	padding-left: 2px;
 }
 
 .product .quantity_text { 
