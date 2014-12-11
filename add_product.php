@@ -175,10 +175,10 @@
 					<span class="error"><?php echo $promoDiscountErr;?></span>
 					<br>
 					<div class="buttons">
-						<input type="submit" value="Add">
 						<a href="./products.php">
 							<input type="button" value="Cancel">
 						</a>
+						<input type="submit" value="Add">
 					</div>
 				</form>
 			</div>
