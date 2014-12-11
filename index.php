@@ -95,8 +95,8 @@
 								$today = date("Y-m-d");
 								if($promoTo && $promoFrom) {
 									if($today >= $promoFrom && $today <= $promoTo) {
-										$discountPrice = round($price - ($price*($promoDiscount/100)),2);
-										echo "<div class='product_price'>Price: <del>\${$price}</del> <ins>{$discountPrice} ({$promoDiscount}% off)</ins></div>";
+										$discountPrice = number_format(round($price - ($price*($promoDiscount/100)),2),2,".","");
+										echo "<div class='product_price'>Price: <del>\${$price}</del> <ins>\${$discountPrice} ({$promoDiscount}% off)</ins></div>";
 									}
 								}
 								else {
