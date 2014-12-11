@@ -12,7 +12,7 @@ BRANDON:
 	-->email
 
 -	*implement sales statistics under manager ID (statistics.php)
-	-->check for correctness when multiple orders present.
+	-->check for correctness when promoted products are bought.
 DEVIN:
 
 -	*be able to add new products
