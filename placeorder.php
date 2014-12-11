@@ -33,8 +33,8 @@
 		$stmt->fetch();
 		$stmt->close();
 		echo "email: {$email} placed an orderNum {$orderID} at {$date}.";
-		$stmt = $conn->prepare("UPDATE orders405 SET dateOrdered=? WHERE id=?");
-		$stmt->bind_param("si",$date,$orderID);
+		$stmt = $conn->prepare("UPDATE orders405 SET dateOrdered=?, total=? WHERE id=?");
+		$stmt->bind_param("sdi",$date,$total,$orderID);
 		$stmt->execute();
 		$stmt->close();
 		$stmt = $conn->prepare("INSERT INTO orders405(userEmail) VALUES (?)");

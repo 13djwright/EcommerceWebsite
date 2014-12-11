@@ -94,7 +94,7 @@
 							echo "<form action='./placeorder.php' method='post'>"; 
 							echo "<div class='product'>";
 							echo "<div class='product_name'><strong>Total:</strong></div>";
-							echo "<div class='product_price'><strong>{$total}</strong></div>";
+							echo "<div class='product_price'><strong>\${$total}</strong></div>";
 							echo "<input type='hidden' name='total' value='{$total}'>";
 							echo "</div>";
 							echo "<input type='hidden' name='orderID' value={$result}>";

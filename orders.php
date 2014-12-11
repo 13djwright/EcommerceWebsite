@@ -100,7 +100,7 @@
 								echo "<span class='product_quantity'>Quantity</span>";
 								echo "<span class='product_price'>Price</span>";
 								echo "</div>";	
-								$stmt = $conn->prepare("select P.name, D.quantity, P.price from products405 P join orderDetails405 D on D.productID=P.id where D.orderID=?");
+								$stmt = $conn->prepare("select P.name, D.quantity, D.price_bought_at from products405 P join orderDetails405 D on D.productID=P.id where D.orderID=?");
 								$stmt->bind_param("i",$orderIDs[$i]);
 								$stmt->execute();
 								$stmt->bind_result($pName, $pQuantity, $pPrice);
