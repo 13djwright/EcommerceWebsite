@@ -11,8 +11,7 @@ BRANDON:
 	-->Change name of account
 	-->email
 
--	*implement sales statistics under manager ID (statistics.php)
-	-->check for correctness when promoted products are bought.
+-	*add sort by function on statistics.php to sort by most/least revenue earned by product
 DEVIN:
 
 -	*managers are able to add new staff/manager

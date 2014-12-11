@@ -212,9 +212,13 @@ form input[type="text"] {
 #account_info_title{
 	font-weight: bold;
 	width: 200px;
+	float: left;
 }
 #account_info_field{
-	float: right;
+	float: left;
 	width: 200px;
 	text-align: left;
+}
+.clear {
+	clear: both;
 }

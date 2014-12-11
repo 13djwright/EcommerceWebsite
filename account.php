@@ -50,8 +50,8 @@
 			</div>
 			<div id="account_info">
 				<?php
-					echo "<div id= 'account_info_title'>Account Information</div>";
-					echo "<br />";
+					echo "<h3>Account Information</h3>";
+					echo "<hr />";
 					$stmt = $conn->prepare("select role, firstName, lastName, password, email, address, city, zipCode, state from users405 where email=?");
 					$stmt->bind_param("s", $liEmail);
 					$stmt->execute();
@@ -62,29 +62,29 @@
 					if($_SERVER["REQUEST_METHOD"] == "POST") {
 						if(!empty($_POST["changeAcc"])) {
 							echo "<div id='account_info_title'>Account Type:</div> <div id='account_info_field'>
-								<input type='text' name='account_type'>
-								</div>";
+								<input type='text' name='account_type' value='{$role}'>
+								</div><br class='clear'>";
 							echo "<div id='account_info_title'>First Name:</div> <div id='account_info_field'>
-								<input type='text' name='fname'>
-								</div>";
+								<input type='text' name='fname' value='{$fname}'>
+								</div><br class='clear'>";
 							echo "<div id='account_info_title'>Last Name:</div>  <div id='account_info_field'>
-								<input type='text' name='lname'>
-								</div>";
+								<input type='text' name='lname' value='{$lname}'>
+								</div><br class='clear'>";
 							echo "<div id='account_info_title'>Email:</div>  <div id='account_info_field'>
-								<input type='text' name='email'>
-								</div>";
+								<input type='text' name='email' value='{$email}'>
+								</div><br class='clear'>";
 							echo "<div id='account_info_title'>Street Address:</div>  <div id='account_info_field'>
-								<input type='text' name='address'>
-								</div>";
+								<input type='text' name='address' value='{$addr}'>
+								</div><br class='clear'>";
 							echo "<div id='account_info_title'>Zip Code:</div>  <div id='account_info_field'>
-								<input type='text' name='zip_code'>
-								</div>";
+								<input type='text' name='zip_code' value='{$zip}'>
+								</div><br class='clear'>";
 							echo "<div id='account_info_title'>City:</div>  <div id='account_info_field'>
-								<input type='text' name='city'>
-								</div>";
+								<input type='text' name='city' value='{$city}'>
+								</div><br class='clear'>";
 							echo "<div id='account_info_title'>State:</div>  <div id='account_info_field'>
-								<input type='text' name='state'>
-								</div>";
+								<input type='text' name='state' value='{$state}'>
+								</div><br class='clear'>";
 							#Update the DB for the changed fields
 							echo "<form method='post' action='./account.php'>";
 							echo "<input type='submit' value='Confirm Changes' name='confirmAcc' onClick='./account.php'>";
@@ -93,27 +93,27 @@
 						else if(!empty($_POST["confirmAcc"])){
 							echo "<span>Changes made to your account information.</span>";
 
-							echo "<div id='account_info_title'>Account Type:</div> <div id='account_info_field'>$role</div>";
-							echo "<div id='account_info_title'>First Name:</div> <div id='account_info_field'>$fname</div>";
-							echo "<div id='account_info_title'>Last Name:</div> <div id='account_info_field'>$lname</div>";
-							echo "<div id='account_info_title'>Email:</div> <div id='account_info_field'>$email</div>";
-							echo "<div id='account_info_title'>Street Address:</div> <div id='account_info_field'>$addr</div>";
-							echo "<div id='account_info_title'>Zip Code:</div> <div id='account_info_field'>$zip</div>";
-							echo "<div id='account_info_title'>City:</div> <div id='account_info_field'>$city</div>";
-							echo "<div id='account_info_title'>State:</div> <div id='account_info_field'>$state</div>";
+							echo "<div id='account_info_title'>Account Type:</div> <div id='account_info_field'>$role</div><br class='clear'>";
+							echo "<div id='account_info_title'>First Name:</div> <div id='account_info_field'>$fname</div><br class='clear'>";
+							echo "<div id='account_info_title'>Last Name:</div> <div id='account_info_field'>$lname</div><br class='clear'>";
+							echo "<div id='account_info_title'>Email:</div> <div id='account_info_field'>$email</div><br class='clear'>";
+							echo "<div id='account_info_title'>Street Address:</div> <div id='account_info_field'>$addr</div><br class='clear'>";
+							echo "<div id='account_info_title'>Zip Code:</div> <div id='account_info_field'>$zip</div><br class='clear'>";
+							echo "<div id='account_info_title'>City:</div> <div id='account_info_field'>$city</div><br class='clear'>";
+							echo "<div id='account_info_title'>State:</div> <div id='account_info_field'>$state</div><br class='clear'>";
 						}
 					}
 					else{
 						#$changes = 'htmlspecialchars($_SERVER["PHP_SELF"])';
 
-						echo "<div id='account_info_title'>Account Type:</div> <div id='account_info_field'>$role</div>";
-						echo "<div id='account_info_title'>First Name:</div> <div id='account_info_field'>$fname</div>";
-						echo "<div id='account_info_title'>Last Name:</div> <div id='account_info_field'>$lname</div>";
-						echo "<div id='account_info_title'>Email:</div> <div id='account_info_field'>$email</div>";
-						echo "<div id='account_info_title'>Street Address:</div> <div id='account_info_field'>$addr</div>";
-						echo "<div id='account_info_title'>Zip Code:</div> <div id='account_info_field'>$zip</div>";
-						echo "<div id='account_info_title'>City:</div> <div id='account_info_field'>$city</div>";
-						echo "<div id='account_info_title'>State:</div> <div id='account_info_field'>$state</div>";
+						echo "<div id='account_info_title'>Account Type:</div> <div id='account_info_field'>$role</div><br class='clear'>";
+						echo "<div id='account_info_title'>First Name:</div> <div id='account_info_field'>$fname</div><br class='clear'>";
+						echo "<div id='account_info_title'>Last Name:</div> <div id='account_info_field'>$lname</div><br class='clear'>";
+						echo "<div id='account_info_title'>Email:</div> <div id='account_info_field'>$email</div><br class='clear'>";
+						echo "<div id='account_info_title'>Street Address:</div> <div id='account_info_field'>$addr</div><br class='clear'>";
+						echo "<div id='account_info_title'>Zip Code:</div> <div id='account_info_field'>$zip</div><br class='clear'>";
+						echo "<div id='account_info_title'>City:</div> <div id='account_info_field'>$city</div><br class='clear'>";
+						echo "<div id='account_info_title'>State:</div> <div id='account_info_field'>$state</div><br class='clear'>";
 
 						echo "<form method='post' action='./account.php'>";
 						echo "<input type='submit' value='Change Account Information' name='changeAcc' onClick='./account.php'>";
