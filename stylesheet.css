@@ -4,7 +4,8 @@ ins {
 
 #inline {
 	position: relative;
-	margin-top: 30px;
+	margin-top: 37px;
+	margin-bottom: 55px;
 }
 
 #inline h3 {
@@ -117,7 +118,7 @@ a.active {
 	float: left;
 	text-align: right;
 	margin-right: 15px;
-	width: 100px;
+	width: 150px;
 }
 
 .login .buttons {
@@ -127,7 +128,8 @@ a.active {
 
 .buttons {
 	margin-top: 5px;
-	margin-right: 285px;
+	float: left;
+	margin-left: 155px;
 }
 .buttons input {
 	float: right;

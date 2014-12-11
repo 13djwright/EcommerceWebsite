@@ -51,7 +51,9 @@
 			</div>
 			<div id='inline'>
 				<h3>Product Details</h3>
-				<button>Add new product</button>
+				<a href="./add_product.php">
+					<button>Add new product</button>
+				</a>
 			</div>
 			<hr style='clear: both'>
 			<div id="searching">
