@@ -4,8 +4,7 @@ ins {
 
 #inline {
 	position: relative;
-	margin-top: 37px;
-	margin-bottom: 55px;
+	margin-top: 30px;
 }
 
 #inline h3 {
@@ -16,7 +15,9 @@ ins {
 }
 
 #inline button {
-	float: right;
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
 
 .to-upper {
@@ -24,22 +25,16 @@ ins {
 }
 
 .order form input[type='submit'] {
-	margin-top: 10px;
-	margin-left: 2px;
-	margin-bottom: 2px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
 }
-
-.order form {
-	padding-bottom: 0px;
-	margin-bottom: 0px;
-}
-
 
 .order {
 	border: 1px solid black;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	padding-bottom: 0px;
+	padding-bottom: 10px;
 	
 }
 
@@ -77,7 +72,6 @@ a.active {
 	width: 100%;
 	overflow: hidden;
 	margin-top: 10px;
-	padding-left: 2px;
 }
 
 .product .quantity_text { 
@@ -123,7 +117,7 @@ a.active {
 	float: left;
 	text-align: right;
 	margin-right: 15px;
-	width: 150px;
+	width: 100px;
 }
 
 .login .buttons {
@@ -133,8 +127,7 @@ a.active {
 
 .buttons {
 	margin-top: 5px;
-	float: left;
-	margin-left: 155px;
+	margin-right: 285px;
 }
 .buttons input {
 	float: right;
