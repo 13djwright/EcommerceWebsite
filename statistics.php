@@ -177,12 +177,14 @@
 						}
 						for($j = 0; $j < $i; $j++){
 							echo "<div class='product'>";
-							echo "<div class='product_name'>$prodlist[$j]</div>";
-							echo "<div class='week'>$prodWeek[$j]</div>";
-							echo "<div class='month'>$prodMonth[$j]</div>";
-							echo "<div class='year'>$prodAnnual[$j]</div>";
-							echo "<div class='total'>$prodTotal[$j]</div>";
-							echo "<div class='profit'>$$product_profit[$j]</div>";
+							echo "<div class='product_name'>{$prodlist[$j]}</div>";
+							echo "<div class='week'>{$prodWeek[$j]}</div>";
+							echo "<div class='month'>{$prodMonth[$j]}</div>";
+							echo "<div class='year'>{$prodAnnual[$j]}</div>";
+							echo "<div class='total'>{$prodTotal[$j]}</div>";
+							echo "<div class='profit'>";
+							echo "\$" . number_format($product_profit[$j], 2, ".", "");
+							echo "</div>";
 							echo "</div>";
 						}
 
@@ -198,9 +200,9 @@
 						echo "<br />";
 						echo "<div class='total'>     </div>";
 						echo "<div class='profit'>     </div>";
-						echo "<div class='all_products'>Total Products Sold: $allProductsTotal</div>";
+						echo "<div class='all_products'>Total Products Sold: {$allProductsTotal}</div>";
 						echo "<br />";
-						echo "<div class='all_products'>Total Revenue: $$grossprofit</div>";
+						echo "<div class='all_products'>Total Revenue: \${$grossprofit}</div>";
 						$weekRevenue = 0;
 						$monthRevenue = 0;
 						$annualRevenue = 0;
