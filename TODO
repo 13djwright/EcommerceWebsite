@@ -19,8 +19,6 @@ DEVIN:
 
 -	*managers are able to add new staff/manager
 
--	*set up promotions via manager (products.php, added function along w/ staff)
-
 -	Make a number limit on how many items can be found? (multiple pages? keyword limit)
 
 -	actually hash the passwords  (look into mysql hashing and php hashing)
