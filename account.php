@@ -58,7 +58,7 @@
 					$stmt->bind_result($role, $fname, $lname, $pw, $email, $addr, $city, $zip, $state);
 					$stmt->fetch();
 					$stmt->close();
-					
+
 					echo "<div id='account_info_title'>Account Type:</div> <div id='account_info_field'>$role</div>";
 					echo "<div id='account_info_title'>First Name:</div> <div id='account_info_field'>$fname</div>";
 					echo "<div id='account_info_title'>Last Name:</div> <div id='account_info_field'>$lname</div>";
@@ -67,10 +67,17 @@
 					echo "<div id='account_info_title'>Zip Code:</div> <div id='account_info_field'>$zip</div>";
 					echo "<div id='account_info_title'>City:</div> <div id='account_info_field'>$city</div>";
 					echo "<div id='account_info_title'>State:</div> <div id='account_info_field'>$state</div>";
+
 					
 					#implement ability to change.
 				?>
+				<br />
+				<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+					<input type="submit" value="Change Account Information" onClick="./account.php">
+
+				</form>
 			</div>
+
 		</div>
 	</body>
 </html>
