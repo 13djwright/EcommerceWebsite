@@ -75,9 +75,7 @@
 							echo "<div id='account_info_title'>Last Name:</div>  <div id='account_info_field'>
 								<input type='text' name='lname' value='{$lname}'>
 								</div><br class='clear'>";
-							echo "<div id='account_info_title'>Email:</div>  <div id='account_info_field'>
-								<input type='text' name='email' value='{$email}'>
-								</div><br class='clear'>";
+							echo "<div id='account_info_title'>Email:</div>  <div id='account_info_field'>{$email}</div><br class='clear'>";
 							echo "<div id='account_info_title'>Street Address:</div>  <div id='account_info_field'>
 								<input type='text' name='address' value='{$addr}'>
 								</div><br class='clear'>";
