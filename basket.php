@@ -80,6 +80,9 @@
 									$discountPrice = number_format(round($pprice - ($pprice*($promodiscount/100)),2), 2, '.', '');
 									echo "<div class='product_price'><del>\${$pprice}</del><ins>{$discountPrice}</ins></div>";
 								}
+								else {
+									echo "<div class='product_price'>\${$pprice}</div>";
+								}
 							}
 							else {
 								echo "<div class='product_price'>\${$pprice}</div>";
