@@ -7,9 +7,6 @@ BRANDON:
 
 -	*add option to view account details and change account details (account.php) 
 	-->password change
-	-->Change address
-	-->Change name of account
-	-->email
 
 -	*add sort by function on statistics.php to sort by most/least revenue earned by product
 DEVIN:

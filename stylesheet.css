@@ -217,6 +217,9 @@ form input[type="text"] {
 	width: 200px;
 	text-align: left;
 }
+#confirm{
+	font-weight: bold;
+}
 .clear {
 	clear: both;
 }
