@@ -48,6 +48,8 @@
 					}
 				?>
 			</div>
+			<h3>Users</h3>
+			<hr>
 			<div id="searching">
 				<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 					<input type="text" name="search" placeholder="Search..." <?php if(isset($_POST['search'])) { echo "value={$_POST['search']}";} ?>>

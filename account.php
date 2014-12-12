@@ -48,10 +48,14 @@
 					}
 				?>
 			</div>
-			<div id="account_info">
 				<?php
+					echo "<div id='inline'>";
 					echo "<h3>Account Information</h3>";
-					echo "<hr />";
+					if($liRole == "MANAGER") {
+						echo "<a href='./users.php'><button>Modify User Roles</button></a>";
+					}
+					echo "</div>";
+					echo "<hr>";
 					$stmt = $conn->prepare("select role, firstName, lastName, password, email, address, city, zipCode, state from users405 where email=?");
 					$stmt->bind_param("s", $liEmail);
 					$stmt->execute();
@@ -128,9 +132,6 @@
 					
 
 				</form>
-
-			</div>
-
 		</div>
 	</body>
 </html>

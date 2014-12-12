@@ -15,9 +15,7 @@ ins {
 }
 
 #inline button {
-	position: absolute;
-	bottom: 0;
-	right: 0;
+	float: right;
 }
 
 .to-upper {
