@@ -70,6 +70,7 @@
 						echo "<div class='product_price'><strong>Price</strong></div>";
 						echo "<div class='product_quantity'><strong>Quantity</strong></div>";
 						echo "</div>";
+						$cart_total = 0;
 						while($stmt->fetch()) {
 							echo "<div class='product'>";
 							echo "<form method='post' action='removeItem.php'>";
@@ -78,14 +79,18 @@
 							if($promofrom && $promoto) {
 								if($today <= $promoto && $today >= $promofrom) {
 									$discountPrice = number_format(round($pprice - ($pprice*($promodiscount/100)),2), 2, '.', '');
-									echo "<div class='product_price'><del>\${$pprice}</del><ins>{$discountPrice}</ins></div>";
+									echo "<div class='product_price'><del>\${$pprice}</del><ins>\${$discountPrice} ({$promodiscount}% off)</ins></div>";
+									$cart_total += $discountPrice*$pquantity;
 								}
 								else {
 									echo "<div class='product_price'>\${$pprice}</div>";
+									$cart_total += $pprice*$pquantity;
 								}
 							}
 							else {
 								echo "<div class='product_price'>\${$pprice}</div>";
+								$cart_total += $pprice*$pquantity;
+								
 							}
 							echo "<div class='product_quantity'>{$pquantity}</div>";
 							echo "<input type='hidden' value='{$orderDetailsID}' name='orderDetailsID'>";
@@ -94,11 +99,12 @@
 							echo "</div>";
 						}
 						if($orderDetailsID) {
+							$cart_total = number_format($cart_total, 2, ".", "");
 							echo "<form action='./placeorder.php' method='post'>"; 
 							echo "<div class='product'>";
 							echo "<div class='product_name'><strong>Total:</strong></div>";
-							echo "<div class='product_price'><strong>\${$total}</strong></div>";
-							echo "<input type='hidden' name='total' value='{$total}'>";
+							echo "<div class='product_price'><strong>\${$cart_total}</strong></div>";
+							echo "<input type='hidden' name='total' value='{$cart_total}'>";
 							echo "</div>";
 							echo "<input type='hidden' name='orderID' value={$result}>";
 							echo "<input type='submit' action='' value='Place Order'>";
