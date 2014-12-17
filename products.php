@@ -115,10 +115,12 @@
 								echo "<form method='post' action='product_update.php'>";
 								echo "<input class='product_name' style='width: 150px' type='text' value='{$name}' name='product_name'/>";
 								echo "<label style='float:left'>price: $</label><input style='float: left; width: 60px;' name='product_price' type='number' value='{$price}' min='0' max='200' step='0.01'>";
-								echo "<label style='float: left'>stock: </label><input style='float: left;' name='product_quantity' value='{$quantity}' type='number' min='0' step='1' max='100'>";		
-								echo "<label style='float: left;'>promoFrom: </label><input style='float: left;' name='promo_from' type='date' value='{$promoFrom}'>";
-								echo "<label style='float: left;'>promoTo: </label><input style='float: left;' name='promo_to' type='date' value='{$promoTo}'>";
-								echo "<label style='float: left;'>Discount: </label><input style='float: left;' name='promo_discount' type='number' min='0' max='100' value='{$promoDiscount}' step='1'>";
+								echo "<label style='float: left'>stock: </label><input style='float: left;' name='product_quantity' value='{$quantity}' type='number' min='0' step='1' max='100'>";	
+								if($liRole == "MANAGER") {
+									echo "<label style='float: left;'>promoFrom: </label><input style='float: left;' name='promo_from' type='date' value='{$promoFrom}'>";
+									echo "<label style='float: left;'>promoTo: </label><input style='float: left;' name='promo_to' type='date' value='{$promoTo}'>";
+									echo "<label style='float: left;'>Discount: </label><input style='float: left;' name='promo_discount' type='number' min='0' max='100' value='{$promoDiscount}' step='1'>";
+								}
 								echo "<input type='hidden' value='{$id}' name='product_id'>";
 								echo "<input type='submit' style='float:left;' value='Update'>";
 								echo "</form>";
